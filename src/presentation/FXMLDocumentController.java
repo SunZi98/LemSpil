@@ -72,6 +72,7 @@ public class FXMLDocumentController implements Initializable {
         if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
             logic.moveNorth();
             north.setText("Market");
+            south.setText("Centrum");
             east.setVisible(false);
             west.setVisible(false);
             taxi.setVisible(false);
@@ -80,14 +81,31 @@ public class FXMLDocumentController implements Initializable {
             Image img;
             img = new Image("file:src/presentation/North (pre pickUp).png");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("south")) {
             logic.moveCentrum();
+            north.setText("North");
+            east.setText("East");
+            south.setText("South");
+            west.setText("West");
+            taxi.setText("Taxi");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(true);
+            north.setVisible(true);
+            south.setVisible(true);
             Image img;
             img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
             imagepic.setImage(img);
-
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName() == "north") {
             logic.moveFishMarket();
+            south.setText("North");
+            east.setVisible(false);
+            west.setVisible(false);
+            taxi.setVisible(false);
+            north.setVisible(false);
+            south.setVisible(true);
             Image img;
             img = new Image("file:src/presentation/Fiskemakret.png");
             imagepic.setImage(img);
@@ -100,16 +118,41 @@ public class FXMLDocumentController implements Initializable {
     private void moveSouth(ActionEvent event) {
         if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
             logic.moveSouth();
+            north.setText("Centrum");
+            east.setVisible(false);
+            west.setVisible(false);
+            taxi.setVisible(false);
+            north.setVisible(true);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/Park (pre handin).png");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("north")) {
             logic.moveCentrum();
+            north.setText("North");
+            east.setText("East");
+            south.setText("South");
+            west.setText("West");
+            taxi.setText("Taxi");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(true);
+            north.setVisible(true);
+            south.setVisible(true);
             Image img;
             img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("the fish market")) {
             logic.moveNorth();
+            north.setText("Market");
+            south.setText("Centrum");
+            east.setVisible(false);
+            west.setVisible(false);
+            taxi.setVisible(false);
+            north.setVisible(true);
+            south.setVisible(true);
             Image img;
             img = new Image("file:src/presentation/North (pre pickUp).png");
             imagepic.setImage(img);
@@ -120,21 +163,54 @@ public class FXMLDocumentController implements Initializable {
     private void moveWest(ActionEvent event) {
         if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
             logic.moveWest();
+            east.setText("Centrum");
+            west.setText("Fru Madsens House");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(false);
+            north.setVisible(false);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/west (pre handin).png");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("east")) {
             logic.moveCentrum();
+            north.setText("North");
+            east.setText("East");
+            south.setText("South");
+            west.setText("West");
+            taxi.setText("Taxi");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(true);
+            north.setVisible(true);
+            south.setVisible(true);
             Image img;
             img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("west")) {
             logic.moveHouse();
+            east.setText("West");
+            east.setVisible(true);
+            west.setVisible(false);
+            taxi.setVisible(false);
+            north.setVisible(false);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/frumadsen.png");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("bar")) {
             logic.moveEast();
+            east.setText("Bar");
+            west.setText("Centrum");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(false);
+            north.setVisible(false);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/East (pre pickUp).PNG");
             imagepic.setImage(img);
@@ -146,21 +222,54 @@ public class FXMLDocumentController implements Initializable {
     private void moveEast(ActionEvent event) {
         if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
             logic.moveEast();
+            east.setText("Bar");
+            west.setText("Centrum");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(false);
+            north.setVisible(false);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/East (pre pickUp).PNG");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("east")) {
             logic.moveBar();
+            west.setText("East");
+            east.setVisible(false);
+            west.setVisible(true);
+            taxi.setVisible(false);
+            north.setVisible(false);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/bar (pre doDishes).png");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("west")) {
             logic.moveCentrum();
+            north.setText("North");
+            east.setText("East");
+            south.setText("South");
+            west.setText("West");
+            taxi.setText("Taxi");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(true);
+            north.setVisible(true);
+            south.setVisible(true);
             Image img;
             img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
             imagepic.setImage(img);
+            
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("fru madsens house")) {
-            logic.moveCentrum();
+            logic.moveWest();
+            east.setText("Centrum");
+            west.setText("Fru Madsens House");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(false);
+            north.setVisible(false);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/west (pre handin).png");
             imagepic.setImage(img);
@@ -171,11 +280,27 @@ public class FXMLDocumentController implements Initializable {
     private void moveTaxi(ActionEvent event) {
         if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
             logic.moveTaxi();
+            taxi.setText("Centrum");
+            east.setVisible(false);
+            west.setVisible(false);
+            taxi.setVisible(true);
+            north.setVisible(false);
+            south.setVisible(false);
             Image img;
             img = new Image("file:src/presentation/Taxi.jpg");
             imagepic.setImage(img);
         } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("taxi")) {
             logic.moveCentrum();
+            north.setText("North");
+            east.setText("East");
+            south.setText("South");
+            west.setText("West");
+            taxi.setText("Taxi");
+            east.setVisible(true);
+            west.setVisible(true);
+            taxi.setVisible(true);
+            north.setVisible(true);
+            south.setVisible(true);
             Image img;
             img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
             imagepic.setImage(img);
