@@ -44,7 +44,8 @@ public class FXMLDocumentController implements Initializable {
     private Button south;
     @FXML
     private Button taxi;
-    
+    @FXML 
+    private Button talk;
     public FXMLDocumentController(ILogic logic){
     this.logic = logic;
 }
@@ -96,14 +97,18 @@ public class FXMLDocumentController implements Initializable {
         logic.moveWest();
     }
     @FXML 
-    private void moveEast(){
+    private void moveEast(ActionEvent event){
         logic.moveEast();
     }
     @FXML
-    private void moveTaxi(){
+    private void moveTaxi(ActionEvent event){
         logic.moveTaxi();
     }
-    
+    @FXML
+    private void talkTo(ActionEvent event){
+        logic.talk();
+        //textField.setText(logic.textString);
+    }
 }
       
     

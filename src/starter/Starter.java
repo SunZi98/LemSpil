@@ -9,7 +9,7 @@ import dataInterfaces.IData;
 import dataInterfaces.ILogic;
 import dataInterfaces.IGUI;
 
-public class Starter {
+public class Starter {  
     
     public static void main(String [] args){
         ILogic logic = new LogicFacade();

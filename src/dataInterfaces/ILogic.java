@@ -13,5 +13,8 @@ public interface ILogic {
     public void moveWest();
     public void moveEast();
     public void moveTaxi();
+    public void talk();
+    public String textPrint(String textString);
+    
    
 }
