@@ -1,10 +1,11 @@
 package data;
 
+import business.NPC;
 import business.LogicFacade;
 import business.Player;
 import dataInterfaces.IData;
 import dataInterfaces.ILogic;
-import dataInterfaces.IPlayer;
+import java.io.Serializable;
 import java.util.Collection;
 
 public class dataFacade implements IData {
@@ -28,7 +29,7 @@ public class dataFacade implements IData {
         saveData.player.getPlayerCurrency();
         saveData.player.getName();
         saveData.player.getStartTime();
-        saveData.npc.getCurrentRoom();
+//        saveData.npc.getCurrentRoom();
 //            saveData.room = bar;
 //            saveData.room = centrum;
 //            saveData.room = east;
@@ -55,7 +56,7 @@ public class dataFacade implements IData {
             player.setPlayerCurrency(loadData.player.getPlayerCurrency());
             player.setPlayerName(loadData.player.getName());
             player.setStartTime(loadData.player.getStartTime());
-            npc.setNewRoom(loadData.npc.getCurrentRoom());
+//            npc.setNewRoom(loadData.npc.getCurrentRoom());
 //                  Image img;
 //                  img = new Image("file:src/LemGame/FiskeMakret.png");
 //                  imagePic.setImage(img);

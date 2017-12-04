@@ -1,10 +1,11 @@
-package data;
+package business;
 
 import business.Room;
+import java.io.Serializable;
 import java.util.Random;
 
 
-   public class NPC {
+   public class NPC implements Serializable  {
 
     private String npcName;
     private String npcDiscription;

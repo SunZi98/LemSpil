@@ -8,6 +8,7 @@ import data.dataFacade;
 import dataInterfaces.IData;
 import dataInterfaces.ILogic;
 import dataInterfaces.IGUI;
+import java.io.Serializable;
 
 public class Starter {  
     

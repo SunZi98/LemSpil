@@ -20,5 +20,7 @@
       <Button fx:id="east" layoutX="161.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveEast" text="East" />
       <Button fx:id="taxi" layoutX="97.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveTaxi" prefHeight="27.0" prefWidth="53.0" text="Taxi" />
       <Button fx:id="talk" layoutX="300.0" layoutY="502.0" mnemonicParsing="false" onAction="#talkTo" text="talk" />
+      <Button fx:id="saveButton" layoutX="31.0" layoutY="26.0" mnemonicParsing="false" onAction="#save" text="Save" />
+      <Button fx:id="loadButton" layoutX="104.0" layoutY="26.0" mnemonicParsing="false" onAction="#load" text="Load" />
     </children>
 </AnchorPane>

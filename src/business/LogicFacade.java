@@ -1,8 +1,10 @@
 package business;
 
-import data.NPC;
+import data.ResourceManager;
+import data.SaveData;
 import dataInterfaces.IData;
 import dataInterfaces.ILogic;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +18,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
     ArrayList<Prop> roomItems = new ArrayList();
     public String textString;
     private static ILogic logic;
+     SaveData saveData = new SaveData();
 
     private Room centrum = new Room("centrum");
     private Room north = new Room("north");
@@ -24,7 +27,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
     private Room west = new Room("west");
     private Room fruMadsensHouse = new Room("fru madsens house");
     private Room bar = new Room("bar");
-    private Room taxi = new Room("taxi ");
+    private Room taxi = new Room("taxi");
     private Room fishMarket = new Room("the fish market");
     private Player player1 = new Player();
     private NPC tuborgManden = new NPC("Tuborg Manden", bar); 
@@ -119,60 +122,49 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
     @Override
     public void moveCentrum() {
-        if (player1.getCurrentRoom() == north) {
             move(centrum);
-        } else {
-            move(north);
-        }
     }
 
     @Override
     public void moveNorth() {
-        if (player1.getCurrentRoom() == centrum) {
             move(north);
-        } else if (player1.getCurrentRoom() == south) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveSouth() {
-        if (player1.getCurrentRoom() == centrum) {
             move(south);
-        } else if (player1.getCurrentRoom() == north) {
-            move(centrum);
-        } else if (player1.getCurrentRoom() == taxi) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveEast() {
-        if (player1.getCurrentRoom() == centrum) {
             move(east);
-        } else if (player1.getCurrentRoom() == west) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveWest() {
-        if (player1.getCurrentRoom() == centrum) {
             move(west);
-        } else if (player1.getCurrentRoom() == east) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveTaxi() {
-        if (player1.getCurrentRoom() == centrum) {
             move(taxi);
-        } else if (player1.getCurrentRoom() == taxi) {
-            move(taxi);
-        }
+    }
+    
+    @Override
+    public void moveFishMarket() {
+        move(fishMarket);
     }
 
+    @Override
+    public void moveHouse() {
+        move(fruMadsensHouse);
+    }
+    
+    @Override
+    public void moveBar(){
+        move(bar);
+    }
+    
     public static ILogic getInstance() {
         return logic;
     }
@@ -182,9 +174,12 @@ public class LogicFacade implements dataInterfaces.ILogic {
         this.data = data;
     }
     
+    @Override
     public void save(){
-        data.save();
+       data.save();
     }
+    
+    @Override
     public void load(){
         data.load(player1, tuborgManden);
     }

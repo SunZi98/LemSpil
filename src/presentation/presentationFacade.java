@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import dataInterfaces.IGUI;
 import dataInterfaces.ILogic;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -40,7 +41,7 @@ public class presentationFacade extends Application implements IGUI {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    
     @Override
     public void startApplication(String[] args) {
         ui = this;

@@ -1,7 +1,7 @@
 package dataInterfaces;
 
 import business.Player;
-import data.NPC;
+import business.NPC;
 import java.util.Collection;
 
 public interface IData {

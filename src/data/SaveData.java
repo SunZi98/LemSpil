@@ -1,6 +1,7 @@
 
 package data;
 
+import business.NPC;
 import business.Player;
 import business.Room;
 
