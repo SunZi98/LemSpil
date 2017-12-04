@@ -13,7 +13,6 @@
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <TextField fx:id="textField" layoutX="590.0" layoutY="502.0" onAction="#handleButtonAction" />
       <ImageView fx:id="imagepic" fitHeight="452.0" fitWidth="866.0" layoutX="-15.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="move" layoutX="496.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveButton" text="move " />
       <Button fx:id="north" layoutX="97.0" layoutY="461.0" mnemonicParsing="false" onAction="#moveNorth" text="North" />
       <Button fx:id="south" layoutX="97.0" layoutY="540.0" mnemonicParsing="false" onAction="#moveSouth" text="South" />
       <Button fx:id="west" layoutX="36.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveWest" text="West" />
