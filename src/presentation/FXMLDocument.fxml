@@ -7,19 +7,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="854.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Button fx:id="showRoom" layoutX="386.0" layoutY="502.0" onAction="#handleButtonAction" text="show room" />
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField fx:id="textField" layoutX="590.0" layoutY="502.0" onAction="#handleButtonAction" />
-      <ImageView fx:id="imagepic" fitHeight="452.0" fitWidth="866.0" layoutX="-15.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="north" layoutX="97.0" layoutY="461.0" mnemonicParsing="false" onAction="#moveNorth" text="North" />
-      <Button fx:id="south" layoutX="97.0" layoutY="540.0" mnemonicParsing="false" onAction="#moveSouth" text="South" />
-      <Button fx:id="west" layoutX="36.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveWest" text="West" />
-      <Button fx:id="east" layoutX="161.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveEast" text="East" />
-      <Button fx:id="taxi" layoutX="97.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveTaxi" prefHeight="27.0" prefWidth="53.0" text="Taxi" />
-      <Button fx:id="talk" layoutX="300.0" layoutY="502.0" mnemonicParsing="false" onAction="#talkTo" text="talk" />
-      <Button fx:id="saveButton" layoutX="31.0" layoutY="26.0" mnemonicParsing="false" onAction="#save" text="Save" />
-      <Button fx:id="loadButton" layoutX="104.0" layoutY="26.0" mnemonicParsing="false" onAction="#load" text="Load" />
+      <ImageView fx:id="imagepic" fitHeight="639.0" fitWidth="1290.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true" />
+      <TextArea fx:id="mapText" layoutX="14.0" layoutY="14.0" prefHeight="267.0" prefWidth="295.0" />
+        <Button fx:id="mapButton" layoutX="934.0" layoutY="592.0" onAction="#caseMap" text="map" />
+      <Button fx:id="north" layoutX="82.0" layoutY="487.0" mnemonicParsing="false" onAction="#moveNorth" text="North" />
+      <Button fx:id="south" layoutX="82.0" layoutY="592.0" mnemonicParsing="false" onAction="#moveSouth" text="South" />
+      <Button fx:id="west" layoutX="11.0" layoutY="537.0" mnemonicParsing="false" onAction="#moveWest" text="West" />
+      <Button fx:id="east" layoutX="161.0" layoutY="537.0" mnemonicParsing="false" onAction="#moveEast" text="East" />
+      <Button fx:id="taxi" layoutX="85.0" layoutY="537.0" mnemonicParsing="false" onAction="#moveTaxi" prefHeight="27.0" prefWidth="53.0" text="Taxi" />
+      <Button fx:id="talk" layoutX="1000.0" layoutY="592.0" mnemonicParsing="false" onAction="#talkTo" text="talk" />
+      <Button fx:id="saveButton" layoutX="1124.0" layoutY="14.0" mnemonicParsing="false" onAction="#save" text="Save" />
+      <Button fx:id="loadButton" layoutX="1209.0" layoutY="14.0" mnemonicParsing="false" onAction="#load" text="Load" />
+      <TextArea fx:id="textArea" layoutX="1.0" layoutY="640.0" prefHeight="213.0" prefWidth="1290.0" />
     </children>
 </AnchorPane>

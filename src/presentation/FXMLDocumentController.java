@@ -12,6 +12,7 @@ import dataInterfaces.IGUI;
 import business.Room;
 import dataInterfaces.IData;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -23,15 +24,13 @@ public class FXMLDocumentController implements Initializable {
     private String currentRoom;
 
     @FXML
-    private TextField textField;
-    @FXML
     private ImageView imagepic;
     @FXML
     private Button showRoom;
     @FXML
     private Label label;
     @FXML
-    private Button move;
+    private Button mapButton;
     @FXML
     private Button north;
     @FXML
@@ -44,28 +43,24 @@ public class FXMLDocumentController implements Initializable {
     private Button taxi;
     @FXML
     private Button talk;
-
+    @FXML
+    private TextArea textArea;
+    @FXML
+    private TextArea mapText;
+    
     public FXMLDocumentController(ILogic logic) {
         this.logic = logic;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        textField.setText(logic.getPlayerName());
+        textArea.setText(logic.getPlayerName());
         Image img;
         img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
         imagepic.setImage(img);
 
     }
 
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-
-        System.out.println(logic.getCurrentPlayerRoom().toString());
-        textField.setText(logic.getPlayerName());
-        textField.setText(logic.getCurrentPlayerRoom().getRoomName());
-        textField.setText(logic.getCurrentPlayerRoom().toString());
-    }
 
     @FXML
     private void moveNorth(ActionEvent event) {
@@ -310,7 +305,46 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void talkTo(ActionEvent event) {
-        logic.talk();
+         if (logic.getCurrentPlayerRoom().getRoomName() == "south" && logic.getCurrentPlayerRoom().getRoomBehavior() == 1) {
+                System.out.println("I could really use a smoke. Do you have any ciggarets my friend? (Type 'hand in' to give the man your ciggarets)");
+            } else {
+                System.out.println("Thanks for the smoke fam!");
+            }
+        
+
+        if (logic.getCurrentPlayerRoom().getRoomName() == "taxi" && logic.getCurrentPlayerRoom().getRoomBehavior() == 1) {
+                System.out.println("I can take you home for 4 beefs.(Type 'hand in' to give him your beefs.)");
+                logic.getCurrentPlayerRoom().setRoomBehavior(1);
+            } else if (logic.getCurrentPlayerRoom().getRoomName() == "taxi" && logic.getCurrentPlayerRoom().getRoomBehavior() == 0){
+                System.out.println("I have not gotten 4 beefs from you yet, so i cant take you home until i do. (Type 'hand in' to give him your beefs.)");
+            }
+        
+        if (logic.getCurrentPlayerRoom().getRoomName() == "fruMadsensHouse" && logic.getCurrentPlayerRoom().getRoomBehavior() == 1) {
+                System.out.println("Can you help me cut my hedge? (Type 'cut hedge' to help her)");
+            } else if (logic.getCurrentPlayerRoom().getRoomName() == "fruMadsensHouse" && logic.getCurrentPlayerRoom().getRoomBehavior() == 0){
+                System.out.println("There is nothing to do right now.");
+            }
+        
+        if (logic.getCurrentPlayerRoom().getRoomName() == "bar" && logic.getCurrentPlayerRoom().getRoomBehavior() == 1) {
+                System.out.println("Can you do the dishes for us? (Type 'do dishes' to do the dishes in the bar).");
+            } else if (logic.getCurrentPlayerRoom().getRoomName() == "bar" && logic.getCurrentPlayerRoom().getRoomBehavior() == 0) {
+                System.out.println("There is nothing to do right now.");
+            }
+            
+        if (logic.getCurrentPlayerRoom().getRoomName() == "west" && logic.getCurrentPlayerRoom().getRoomBehavior() == 1) {
+                System.out.println("Did you find my wallet? (Type 'hand in' to give the man your wallet)");
+            } else if(logic.getCurrentPlayerRoom().getRoomName() == "west" && logic.getCurrentPlayerRoom().getRoomBehavior() == 0) {
+                System.out.println("Thanks for the help with finding my wallet!");
+            }
+        if (logic.getCurrentPlayerRoom().getRoomName() == "fishMarket") {
+            System.out.println("Here you can buy beefs.");
+        }
+
+        if (player1.getCurrentRoom() == centrum || player1.getCurrentRoom() == north || player1.getCurrentRoom() == east) {
+            System.out.println("There is nothing to do right now.");
+        }
+        
+      
         //textField.setText(logic.textString);
     }
 
@@ -324,5 +358,16 @@ public class FXMLDocumentController implements Initializable {
     private void load(ActionEvent event) {
         logic.load();
         //textField.setText(logic.textString);
+    }
+    
+    @FXML
+    private void caseMap(ActionEvent event) {
+        System.out.println("You are in " + logic.getCurrentPlayerRoom().toString());
+        System.out.println("You can go: ");
+        for (Room StuffToPrint : logic.getCurrentPlayerRoom().getRoomExits()) {
+            System.out.println(" " + StuffToPrint.getRoomName());
+        }
+
+        System.out.println("Tuborg dude is in " + logic.getNpcRoom());
     }
 }

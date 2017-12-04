@@ -12,5 +12,6 @@ public interface IPlayer {
     int getPlayerDrunk();
     long getStartTime();
     long getEndTime();
+    Room getNpcRoom();
     
 }

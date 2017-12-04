@@ -38,6 +38,7 @@ public interface ILogic {
 
     public void load();
 
-    public String textPrint(String textString);
+
+    Room getNpcRoom();
 
 }
