@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Button fx:id="button" layoutX="126" layoutY="90" onAction="#handleButtonAction" text="Click Me!" />
+        <Button fx:id="showRoom" layoutX="386.0" layoutY="502.0" onAction="#handleButtonAction" text="show room" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField fx:id="textField" layoutX="77.0" layoutY="35.0" onAction="#handleButtonAction" />
+      <TextField fx:id="textField" layoutX="590.0" layoutY="502.0" onAction="#handleButtonAction" />
+      <ImageView fx:id="imagepic" fitHeight="452.0" fitWidth="866.0" layoutX="-15.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="move" layoutX="496.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveButton" text="move " />
+      <Button fx:id="north" layoutX="97.0" layoutY="461.0" mnemonicParsing="false" onAction="#moveNorth" text="North" />
+      <Button fx:id="south" layoutX="97.0" layoutY="540.0" mnemonicParsing="false" onAction="#moveSouth" text="South" />
+      <Button fx:id="west" layoutX="36.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveWest" text="West" />
+      <Button fx:id="east" layoutX="161.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveEast" text="East" />
+      <Button fx:id="taxi" layoutX="97.0" layoutY="502.0" mnemonicParsing="false" onAction="#moveTaxi" prefHeight="27.0" prefWidth="53.0" text="Taxi" />
     </children>
 </AnchorPane>

@@ -18,7 +18,6 @@ public class presentationFacade extends Application implements IGUI {
     
     private static ILogic logic;
     
-    
     @Override
     public void injectLogic(ILogic logic){
         presentationFacade.logic = logic;

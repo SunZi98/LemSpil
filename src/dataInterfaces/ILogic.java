@@ -4,8 +4,14 @@ import business.Room;
 
 public interface ILogic {
     public void injectData(IData data);
-    public String getCurrentRoom();
     public void setCurrentPlayerRoom(Room room);
     public String getPlayerName();
-    public Room currentPlayerRoom();
+    public Room getCurrentPlayerRoom();
+    public void moveCentrum();
+    public void moveNorth();
+    public void moveSouth();
+    public void moveWest();
+    public void moveEast();
+    public void moveTaxi();
+   
 }
