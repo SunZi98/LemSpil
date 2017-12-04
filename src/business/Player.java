@@ -2,23 +2,99 @@ package business;
 
 import dataInterfaces.ILogic;
 
-
-
 public class Player {
-    Room room;
-    String name;
-    Room currentPlayerRoom;
-    
-    public Player(String name){
-        this.name = name;
-}
-    public void setCurrentPlayerRoom(Room room){
-        this.room = room;
-    }
+
   
-    public Room getCurrentPlayerRoom(){
-        return this.currentPlayerRoom;
+    private long startTime;
+    long endTime;
+    private Room currentPlayerRoom; //players current room
+    private int playerDrunk; // indicates how "drunk" the player. It's indicated with a int datatype.
+    private String playerName; //player name
+    private int playerCurrency; // player currency
+
+    public Player() { //Constructor that sets a start value for playername, playerCurrency and playerDrunk
+        this.playerCurrency = 0;
+        this.playerDrunk = 0;
     }
-   
-    
+
+
+    public String getName() {
+        return playerName;
+    }
+
+    public Room getCurrentRoom() {
+        return currentPlayerRoom;
+    }
+
+    public void setNewRoom(Room room) {
+        this.currentPlayerRoom = room;
+    }
+
+    public void move(Room room) { //move method that updates currentPlayerRoom
+        this.currentPlayerRoom = room;
+    }
+
+    public int getPlayerCurrency() { //return player currency
+        return playerCurrency;
+    }
+
+    public void addCurrency(int currency) { // add currency 
+        playerCurrency += currency;
+    }
+
+
+
+    public int removeCurrency(int currency) { // remove currency
+        return playerCurrency -= currency;
+    }
+
+  
+
+    public void drink() {
+        if (this.playerDrunk < 4) { //checks if you already drank 4 times
+            playerDrunk++; //increment playerDrunk by 1
+            System.out.println("You drunkometer is now at " + this.playerDrunk); // prints how drunk you are
+        } else {
+            System.out.println("Your drunkometer is at " + this.playerDrunk + " you are too drunk"); //print if you drank 4 times already
+            System.out.println("You are too drunk");
+        }
+
+    }
+
+    public int getPlayerDrunk() { //returns integer on how drunk you are.
+        return playerDrunk;
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setPlayerCurrency(int playerCurrency) {
+        this.playerCurrency = playerCurrency;
+    }
+
+    public void setPlayerDrunk(int playerDrunk) {
+        this.playerDrunk = playerDrunk;
+    }
+
+    public void move() {
+        
+    }
+
 }

@@ -63,7 +63,7 @@ public class FXMLDocumentController implements Initializable {
        // System.out.println(logic.getPlayerRoom().toString());
         System.out.println("You clicked me!");
         //textField.setText(logic.getPlayerName());
-        textField.setText(logic.getCurrentPlayerRoom().roomName);
+        textField.setText(logic.getCurrentPlayerRoom().getRoomName());
         //textField.setText(logic.getCurrentPlayerRoom().toString());
         
        
@@ -73,7 +73,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML 
     private void moveButton(ActionEvent event){
         logic.moveCentrum();
-        if (logic.getCurrentPlayerRoom().roomName == "centrum"){
+        if (logic.getCurrentPlayerRoom().getRoomName() == "centrum"){
             Image img;
             img = new Image("file:src/presentation/whatyougot.jpg");
             imagepic.setImage(img);
