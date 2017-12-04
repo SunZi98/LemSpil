@@ -24,7 +24,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
     private Room west = new Room("west");
     private Room fruMadsensHouse = new Room("fru madsens house");
     private Room bar = new Room("bar");
-    private Room taxi = new Room("taxi ");
+    private Room taxi = new Room("taxi");
     private Room fishMarket = new Room("the fish market");
     private Player player1 = new Player();
     private NPC tuborgManden = new NPC("Tuborg Manden", bar); 
@@ -119,60 +119,49 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
     @Override
     public void moveCentrum() {
-        if (player1.getCurrentRoom() == north) {
             move(centrum);
-        } else {
-            move(north);
-        }
     }
 
     @Override
     public void moveNorth() {
-        if (player1.getCurrentRoom() == centrum) {
             move(north);
-        } else if (player1.getCurrentRoom() == south) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveSouth() {
-        if (player1.getCurrentRoom() == centrum) {
             move(south);
-        } else if (player1.getCurrentRoom() == north) {
-            move(centrum);
-        } else if (player1.getCurrentRoom() == taxi) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveEast() {
-        if (player1.getCurrentRoom() == centrum) {
             move(east);
-        } else if (player1.getCurrentRoom() == west) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveWest() {
-        if (player1.getCurrentRoom() == centrum) {
             move(west);
-        } else if (player1.getCurrentRoom() == east) {
-            move(centrum);
-        }
     }
 
     @Override
     public void moveTaxi() {
-        if (player1.getCurrentRoom() == centrum) {
             move(taxi);
-        } else if (player1.getCurrentRoom() == taxi) {
-            move(taxi);
-        }
+    }
+    
+    @Override
+    public void moveFishMarket() {
+        move(fishMarket);
     }
 
+    @Override
+    public void moveHouse() {
+        move(fruMadsensHouse);
+    }
+    
+    @Override
+    public void moveBar(){
+        move(bar);
+    }
+    
     public static ILogic getInstance() {
         return logic;
     }

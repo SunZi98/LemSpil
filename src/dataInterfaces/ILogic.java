@@ -13,6 +13,9 @@ public interface ILogic {
     public void moveWest();
     public void moveEast();
     public void moveTaxi();
+    public void moveFishMarket();
+    public void moveHouse();
+    public void moveBar();
     public void talk();
     public String textPrint(String textString);
     

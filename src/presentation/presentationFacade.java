@@ -40,7 +40,7 @@ public class presentationFacade extends Application implements IGUI {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
+    
     @Override
     public void startApplication(String[] args) {
         ui = this;

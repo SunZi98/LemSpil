@@ -54,6 +54,9 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       textField.setText(logic.getPlayerName());
+            Image img;
+            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+            imagepic.setImage(img);
        
     }
     
@@ -61,48 +64,134 @@ public class FXMLDocumentController implements Initializable {
     private void handleButtonAction(ActionEvent event) {
         
        // System.out.println(logic.getPlayerRoom().toString());
-        System.out.println("You clicked me!");
         //textField.setText(logic.getPlayerName());
         textField.setText(logic.getCurrentPlayerRoom().getRoomName());
-        //textField.setText(logic.getCurrentPlayerRoom().toString());
-        
-       
-       
-        
+        //textField.setText(logic.getCurrentPlayerRoom().toString());   
     }
-    @FXML 
-    private void moveButton(ActionEvent event){
-        logic.moveCentrum();
-        if (logic.getCurrentPlayerRoom().getRoomName() == "centrum"){
-            Image img;
-            img = new Image("file:src/presentation/whatyougot.jpg");
-            imagepic.setImage(img);
-        }else{
-            Image img;
-            img = new Image("file:src/presentation/michael.jpg");
-            imagepic.setImage(img);
-        }
-       
-    } 
+    
     @FXML
     private void moveNorth(ActionEvent event){
-        logic.moveNorth();   
+         if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
+            logic.moveNorth();
+            north.setText("Market");
+            east.setVisible(false);
+            west.setVisible(false);
+            taxi.setVisible(false);
+            north.setVisible(true);
+            south.setVisible(true);
+            Image img;
+            img = new Image("file:src/presentation/North (pre pickUp).png");
+            imagepic.setImage(img);
+         }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("south")) {
+            logic.moveCentrum();
+            Image img;
+            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+            imagepic.setImage(img);
+            
+        } else if (logic.getCurrentPlayerRoom().getRoomName() == "north") {
+            logic.moveFishMarket();
+            Image img;
+            img = new Image("file:src/presentation/Fiskemakret.png");
+            imagepic.setImage(img);
+           
+        }
+    
     }
+    
     @FXML
     private void moveSouth(ActionEvent event){
-        logic.moveSouth();
+        if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
+            logic.moveSouth();
+            Image img;
+            img = new Image("file:src/presentation/Park (pre handin).png");
+            imagepic.setImage(img);
+         }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("north")) {
+            logic.moveCentrum();
+            Image img;
+            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+            imagepic.setImage(img);
+    }
+        else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("the fish market")) {
+            logic.moveNorth();
+            Image img;
+            img = new Image("file:src/presentation/North (pre pickUp).png");
+            imagepic.setImage(img);
+        }
     }
     @FXML 
     private void moveWest(ActionEvent event){
-        logic.moveWest();
+        if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
+            logic.moveWest();
+            Image img;
+            img = new Image("file:src/presentation/west (pre handin).png");
+            imagepic.setImage(img);
+        }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("east")) {
+            logic.moveCentrum();
+            Image img;
+            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+            imagepic.setImage(img);
+        }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("west")) {
+            logic.moveHouse();
+            Image img;
+            img = new Image("file:src/presentation/frumadsen.png");
+            imagepic.setImage(img);    
+        }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("bar")) {
+            logic.moveEast();
+            Image img;
+            img = new Image("file:src/presentation/East (pre pickUp).PNG");
+            imagepic.setImage(img); 
     }
+        
+    }
+    
     @FXML 
     private void moveEast(ActionEvent event){
-        logic.moveEast();
+        if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
+            logic.moveEast();
+            Image img;
+            img = new Image("file:src/presentation/East (pre pickUp).PNG");
+            imagepic.setImage(img);
+        }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("east")) {
+            logic.moveBar();
+            Image img;
+            img = new Image("file:src/presentation/bar (pre doDishes).png");
+            imagepic.setImage(img);
+        }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("west")) {
+            logic.moveCentrum();
+            Image img;
+            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+            imagepic.setImage(img);    
+        }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("fru madsens house")) {
+            logic.moveCentrum();
+            Image img;
+            img = new Image("file:src/presentation/west (pre handin).png");
+            imagepic.setImage(img);
     }
+    }
+    
     @FXML
     private void moveTaxi(ActionEvent event){
-        logic.moveTaxi();
+        if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
+            logic.moveTaxi();
+            Image img;
+            img = new Image("file:src/presentation/Taxi.jpg");
+            imagepic.setImage(img);
+        }
+            else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("taxi")) {
+            logic.moveCentrum();
+            Image img;
+            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+            imagepic.setImage(img);
+        }
+            
     }
     @FXML
     private void talkTo(ActionEvent event){
