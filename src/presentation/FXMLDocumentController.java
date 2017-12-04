@@ -74,6 +74,7 @@ public class FXMLDocumentController implements Initializable {
          if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
             logic.moveNorth();
             north.setText("Market");
+            south.setText("Centrum");
             east.setVisible(false);
             west.setVisible(false);
             taxi.setVisible(false);
