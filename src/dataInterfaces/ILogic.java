@@ -31,7 +31,6 @@ public interface ILogic {
     public void moveHouse();
 
     public void moveBar();
-
     public void talk();
 
     public void save();
