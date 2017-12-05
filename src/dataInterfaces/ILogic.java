@@ -1,8 +1,8 @@
 package dataInterfaces;
 
-import business.NPC;
-import business.Player;
+import business.Prop;
 import business.Room;
+import java.util.ArrayList;
 
 public interface ILogic {
 
@@ -32,13 +32,22 @@ public interface ILogic {
 
     public void moveBar();
 
-    public void talk();
-
     public void save();
 
     public void load();
 
+    public void handIn();
 
-    Room getNpcRoom();
+    public void setText(String text);
 
+    public String getText();
+
+    public void addText(String string);
+
+    public void talk();
+    
+    public void map();
+    
+    public void doAction();
+    
 }

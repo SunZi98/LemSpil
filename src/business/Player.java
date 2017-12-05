@@ -2,6 +2,7 @@ package business;
 
 import dataInterfaces.ILogic;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Player implements Serializable {
 
@@ -12,6 +13,7 @@ public class Player implements Serializable {
     private int playerDrunk; // indicates how "drunk" the player. It's indicated with a int datatype.
     private String playerName; //player name
     private int playerCurrency; // player currency
+     private ArrayList<Prop> bag = new ArrayList();
 
     public Player() { //Constructor that sets a start value for playername, playerCurrency and playerDrunk
         this.playerCurrency = 0;
@@ -94,8 +96,16 @@ public class Player implements Serializable {
         this.playerDrunk = playerDrunk;
     }
 
-    public void move() {
-        
+    public ArrayList<Prop> getBag() {
+        return bag;
+    }
+
+    public void addProp(Prop prop) {
+        bag.add(prop);
+    }
+
+    public void removeItem(Prop prop) { //remove item from bag
+        bag.remove(prop);
     }
 
 }
