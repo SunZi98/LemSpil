@@ -103,17 +103,28 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
     public void move(Room room) {
         player1.setNewRoom(room);
-        tuborgMan.npcMove();
-        if (tuborgManden.getNpcRoom() == taxi) {
-            tuborgManden.setNpcRoom(centrum);
+        tuborgManden.move();
+        if (tuborgManden.getCurrentRoom()== taxi) {
+            tuborgManden.setNewRoom(centrum);
         }
-        if (tuborgManden.getNpcRoom() == fruMadsensHouse) {
-            tuborgManden.setNpcRoom(east);
+        if (tuborgManden.getCurrentRoom() == fruMadsensHouse) {
+            tuborgManden.setNewRoom(east);
         }
-        if (player1.getCurrentPlayerRoom() == tuborgMan.getNpcRoom()) {
-            player1.drink();
-            System.out.println("You met the turborg guy!");
+        if (player1.getCurrentRoom()== tuborgManden.getCurrentRoom()) {
+            drink();
+            setText("You met the turborg guy!");
         }
+    }
+    
+    public void drink() {
+        if (player1.getPlayerDrunk() < 4) { //checks if you already drank 4 times
+            player1.addDrunk(); //increment playerDrunk by 1
+            setText("You drunkometer is now at " + player1.getPlayerDrunk()); // prints how drunk you are
+        } else {
+            setText("Your drunkometer is at " + player1.getPlayerDrunk() + " you are too drunk"); //print if you drank 4 times already
+            setText("You are too drunk");
+        }
+
     }
 
     @Override

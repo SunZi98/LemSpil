@@ -51,19 +51,6 @@ public class Player implements Serializable {
         return playerCurrency -= currency;
     }
 
-  
-
-    public void drink() {
-        if (this.playerDrunk < 4) { //checks if you already drank 4 times
-            playerDrunk++; //increment playerDrunk by 1
-            System.out.println("You drunkometer is now at " + this.playerDrunk); // prints how drunk you are
-        } else {
-            System.out.println("Your drunkometer is at " + this.playerDrunk + " you are too drunk"); //print if you drank 4 times already
-            System.out.println("You are too drunk");
-        }
-
-    }
-
     public int getPlayerDrunk() { //returns integer on how drunk you are.
         return playerDrunk;
     }
@@ -107,5 +94,9 @@ public class Player implements Serializable {
     public void removeItem(Prop prop) { //remove item from bag
         bag.remove(prop);
     }
-
+    
+    public void addDrunk(){
+        playerDrunk++;
+    }
+    
 }
