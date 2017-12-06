@@ -3,26 +3,24 @@ package business;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room implements Serializable{
-    
+public class Room implements Serializable {
+
     private String roomName;
     private int roomBehavior;
     private String roomDescription;
     ArrayList<Prop> roomItems = new ArrayList(); // ArrayList that holds props in the room.
-    ArrayList<Room> roomExits = new ArrayList(); // ArrayList that holds room exits.
+    private ArrayList<Room> roomExits = new ArrayList(); // ArrayList that holds room exits.
 
-    
+    public Room() {
 
-    
-    public Room(){
-        
     }
+
     public Room(String roomName) { //Constructor that sets a start value for roomName and roomLocation.
         this.roomName = roomName; // give roomName a start value
         this.roomBehavior = 1; //set roomBehavior to 1.
     }
-    
-     @Override
+
+    @Override
     public String toString() {
         return roomName;
     }
@@ -40,7 +38,7 @@ public class Room implements Serializable{
     }
 
     public String getRoomName() {
-    return roomName;
+        return roomName;
     }
 
     public int getRoomBehavior() {
@@ -58,15 +56,17 @@ public class Room implements Serializable{
     public void setRoomDescription(String roomDescription) {
         this.roomDescription = roomDescription;
     }
-    
-    public ArrayList<Prop> getRoomItems() {
+
+    public ArrayList<Prop> getRoomItem() {
         return roomItems;
     }
 
-    
+    public String getRoomItems() {
+        return roomItems.get(0).getPropName();
+    }
+
     public ArrayList<Room> getRoomExits() {
         return roomExits;
     }
 
-    
 }

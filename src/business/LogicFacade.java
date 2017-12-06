@@ -4,6 +4,8 @@ import data.SaveData;
 import dataInterfaces.IData;
 import dataInterfaces.ILogic;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 import javafx.scene.image.ImageView;
@@ -17,7 +19,13 @@ public class LogicFacade implements dataInterfaces.ILogic {
     private Prop propName;
     private ArrayList<Prop> roomItems = new ArrayList();
     private static ILogic logic;
-
+    private Boolean isSucessFull = false;
+    int drunkPenalty;
+    long endTimeInMinutes;
+    long endTimeInSeconds;
+    int beefcount = 0;
+    int score;
+    
     private SaveData saveData = new SaveData();
     private Scanner input = new Scanner(System.in);
     private Room centrum = new Room("centrum");
@@ -49,7 +57,6 @@ public class LogicFacade implements dataInterfaces.ILogic {
         centrum.setRoomExit(east);
         centrum.setRoomExit(south);
         centrum.setRoomExit(west);
-        centrum.setRoomExit(taxi);
         west.setRoomExit(fruMadsensHouse);
         west.setRoomExit(centrum);
         north.setRoomExit(fishMarket);
@@ -59,6 +66,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
         fruMadsensHouse.setRoomExit(west);
         bar.setRoomExit(east);
         south.setRoomExit(centrum);
+        south.setRoomExit(taxi);
         taxi.setRoomExit(centrum);
         fishMarket.setRoomExit(north);
 
@@ -71,10 +79,6 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
         centrum.addRoomItem(wallet);
         east.addRoomItem(ciggarets);
-        centrum.addRoomItem(wallet);
-        east.addRoomItem(ciggarets);
-        south.addRoomItem(timePotion);
-        bar.addRoomItem(key);
         south.addRoomItem(timePotion);
         bar.addRoomItem(key);
 
@@ -83,6 +87,9 @@ public class LogicFacade implements dataInterfaces.ILogic {
         ciggarets.setPropDescription(" someone might be intrested in these");
         timePotion.setPropDescription(" Maybe i should try to drink it");
         key.setPropDescription(". Looks like a key for the fish market");
+
+        player1.addProp(beef);
+//        player1.addProp(wallet);
 
     }
 
@@ -102,21 +109,23 @@ public class LogicFacade implements dataInterfaces.ILogic {
     }
 
     public void move(Room room) {
+        checkTime();
         player1.setNewRoom(room);
         tuborgManden.move();
-        if (tuborgManden.getCurrentRoom()== taxi) {
+        if (tuborgManden.getCurrentRoom() == taxi) {
             tuborgManden.setNewRoom(centrum);
         }
         if (tuborgManden.getCurrentRoom() == fruMadsensHouse) {
             tuborgManden.setNewRoom(east);
         }
-        if (player1.getCurrentRoom()== tuborgManden.getCurrentRoom()) {
+        if (player1.getCurrentRoom() == tuborgManden.getCurrentRoom()) {
             drink();
             setText("You met the turborg guy!");
         }
     }
-    
+
     public void drink() {
+        clearText();
         if (player1.getPlayerDrunk() < 4) { //checks if you already drank 4 times
             player1.addDrunk(); //increment playerDrunk by 1
             setText("You drunkometer is now at " + player1.getPlayerDrunk()); // prints how drunk you are
@@ -129,37 +138,51 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
     @Override
     public void moveCentrum() {
+        clearText();
         move(centrum);
     }
 
     @Override
     public void moveNorth() {
+        clearText();
         move(north);
     }
 
     @Override
     public void moveSouth() {
+        clearText();
         move(south);
     }
 
     @Override
     public void moveEast() {
+        clearText();
         move(east);
     }
 
     @Override
     public void moveWest() {
+        clearText();
         move(west);
     }
 
     @Override
     public void moveTaxi() {
+        clearText();
         move(taxi);
     }
 
     @Override
     public void moveFishMarket() {
-        move(fishMarket);
+        clearText();
+        if (player1.getBag().contains(key)) {
+            setText("You have the key. Welcome to the fish market");
+            setIsSucessFull(true);
+            move(fishMarket);
+            //addText(fishMarket.getRoomDescription());
+        } else {
+            setText("Looks you need a key to get in here.");
+        }
     }
 
     @Override
@@ -193,6 +216,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
     @Override
     public void handIn() {
+        clearText();
         Random random = new Random();
         int count = 0;
         int fifty = 50;
@@ -241,7 +265,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
                     if (player1.getBag().contains(beef)) {
                         player1.getBag().remove(beef);
                         count++;
-                        // beefcount++;
+                        beefcount++;
                     }
                 }
 
@@ -260,6 +284,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
     @Override
     public void talk() {
+        clearText();
         if (player1.getCurrentRoom() == south) {
             if (south.getRoomBehavior() == 1) {
                 setText("I could really use a smoke. Do you have any ciggarets my friend? (Type 'hand in' to give the man your ciggarets)");
@@ -308,6 +333,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
     @Override
     public void map() {
+        clearText();
         setText("You are in " + player1.getCurrentRoom().toString());
         addText("\nYou can go: ");
         for (Room StuffToPrint : player1.getCurrentRoom().getRoomExits()) {
@@ -328,20 +354,30 @@ public class LogicFacade implements dataInterfaces.ILogic {
     }
 
     @Override
+    public void clearText() {
+        setText("");
+    }
+
+    @Override
     public String getText() {
         return text;
     }
 
     @Override
-    public void doAction() {
+    public void help() {
+        clearText();
+        setText("Controls: \nW = move North \nA = move East \nS = move South \nD = move West \nM = show map \nB = show bag \n T = talk \n E = do action");
+    }
 
+    @Override
+    public void doAction() { //FIX
+        clearText();
         while (true) {
 
             if (player1.getCurrentRoom() == fruMadsensHouse) {
                 if (fruMadsensHouse.getRoomBehavior() == 1) {
                     player1.addCurrency(50);
-                    setText("You cut Fru Madsens Hegde and was rewarded 50 coins ");
-                    addText(" fru madsens kisses wyou on the cheek as a thanks");
+                    setText("You cut Fru Madsens Hegde and was rewarded 50 coins. fru Madsen kisses you on the cheek as a thanks");
                     fruMadsensHouse.setRoomBehavior(0);
                     break;
                 } else {
@@ -351,25 +387,137 @@ public class LogicFacade implements dataInterfaces.ILogic {
             }
 
             if (player1.getCurrentRoom() == fishMarket) {
-                while (true) {
-                      if (player1.getCurrentRoom() == fishMarket) {
-                      }
-                      
-                    if (player1.getPlayerCurrency() < 25) {
-                        System.out.println("You don't have enough money to buy a beef");
-                        break;
-                    } else {
-                        player1.addProp(beef);
-                        System.out.println("You brought a beef for 25 coins" + beef.getPropDescription());
-                        player1.removeCurrency(25);
-                        break;
-                    }
+
+                if (player1.getPlayerCurrency() < 25) {
+                    setText("You don't have enough money to buy a beef");
+                    break;
+                } else {
+                    player1.addProp(beef);
+                    setText("You brought a beef for 25 coins" + beef.getPropDescription());
+                    player1.removeCurrency(25);
+                    break;
                 }
-            }  
-                System.out.println("nothing");
-                break;
-            
+
+            }
+            if (player1.getCurrentRoom() == bar) {
+                if (bar.getRoomBehavior() == 1) {
+                    setText("You cleaned the dishes and got 50 coins to your bag!");
+                    player1.addCurrency(25);
+                    fruMadsensHouse.setRoomBehavior(0);
+                    break;
+                } else {
+                    setText("You already did the dishes!");
+                    break;
+                }
+            }
+            setText("nothing");
+            break;
 
         }
     }
+
+    @Override
+    public void pickUp() {
+        clearText();
+        try {
+            player1.addProp(player1.getCurrentRoom().getRoomItem().get(0));
+            setText("You picked up a " + player1.getCurrentRoom().getRoomItems());
+            if (player1.getBag().contains(timePotion)) {
+                consume();
+            }
+            player1.getCurrentRoom().getRoomItem().clear();
+        } catch (RuntimeException e) {
+        }
+    }
+
+    @Override
+    public void showBag() {
+        clearText();
+        if (player1.getBag().size() == 0) {
+            setText("Your bag is empty! "); //prints if there is nothing in your bag
+            addText("\n Currency: " + Integer.toString(player1.getPlayerCurrency()));
+        } else {
+            setText("Bag: ");
+            Map<String, Integer> print = new HashMap<>();
+            for (Prop StuffToPrint : player1.getBag()) { // iterate through bag
+                if (print.containsKey(StuffToPrint.getPropName())) {
+                    print.put(StuffToPrint.getPropName(), print.get(StuffToPrint.getPropName()) + 1);
+
+                } else {
+                    print.put(StuffToPrint.getPropName(), 1);
+                }
+            }
+            for (String propName : print.keySet()) {
+                addText("\n" + print.get(propName) + " " + propName + "(s)");
+            }
+            addText("\nCurrency: " + Integer.toString(player1.getPlayerCurrency()));
+        }
+    }
+
+    @Override
+    public String getRoomPropName() {
+        return player1.getCurrentRoom().getRoomItems();
+    }
+
+    @Override
+    public Boolean getIsSucessFull() {
+        return isSucessFull;
+    }
+
+    @Override
+    public void setIsSucessFull(Boolean isSucessFull) {
+        this.isSucessFull = isSucessFull;
+    }
+
+    public void consume() {
+        if (player1.getBag().contains(timePotion)) {
+            player1.setStartTime(player1.getStartTime() + 60 * 1000);
+            player1.getBag().remove(timePotion);
+            addText(" .You consumed the time potion and added 1 minute to your clock!");
+        }
+    }
+
+    @Override
+    public void checkTime() {
+        drunkPenalty += player1.getPlayerDrunk();
+        if (player1.getStartTime() + 5 * 60 * 1000 < System.currentTimeMillis() + drunkPenalty * 1000) {
+            lose();
+        }
+    }
+
+    @Override
+    public void lose() {
+        scoreBoard();
+    }
+
+    @Override
+    public void scoreBoard() {
+        System.out.println("You lost");
+        clearText();
+        endTimeInMinutes = ((System.currentTimeMillis() + drunkPenalty * 1000 - player1.getStartTime()) / 1000 / 60);
+        endTimeInSeconds = ((System.currentTimeMillis() + drunkPenalty * 1000 - player1.getStartTime()) / 1000) % 60;
+        if (beefcount >= 4) {
+            if (player1.getStartTime() + 1 * 60 * 1000 > System.currentTimeMillis() + drunkPenalty * 1000) {
+              setText("You got 10 points and used " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
+                score = 10;
+            } else if (player1.getStartTime() + 2 * 60 * 1000 > System.currentTimeMillis() + drunkPenalty * 1000) {
+                setText("You got 8 points! " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
+                score = 8;
+            } else if (player1.getStartTime() + 3 * 60 * 1000 > System.currentTimeMillis() + drunkPenalty * 1000) {
+                setText("You got 6 points! " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
+                score = 6;
+            } else if (player1.getStartTime() + 4 * 60 * 1000 > System.currentTimeMillis() + drunkPenalty * 1000) {
+                setText("You got 4 points! and used " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
+                score = 4;
+            } else {
+                setText("You got 2 points! " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
+                score = 2;
+            }
+        } else {
+            setText("You got 0 points" + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
+            score = 0;
+        }
+
+    }
+
 }

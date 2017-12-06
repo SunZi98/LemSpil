@@ -45,9 +45,28 @@ public interface ILogic {
     public void addText(String string);
 
     public void talk();
-    
+
     public void map();
-    
+
     public void doAction();
-    
+
+    public void pickUp();
+
+    public String getRoomPropName();
+
+    public void showBag();
+
+    public void setIsSucessFull(Boolean isSucessFull);
+
+    public Boolean getIsSucessFull();
+
+    public void help();
+
+    public void clearText();
+
+    public void checkTime();
+
+    public void lose();
+
+    public void scoreBoard();
 }

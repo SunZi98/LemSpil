@@ -20,7 +20,6 @@ public class Player implements Serializable {
         this.playerDrunk = 0;
     }
 
-
     public String getName() {
         return playerName;
     }

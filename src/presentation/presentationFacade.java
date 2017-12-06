@@ -37,6 +37,7 @@ public class presentationFacade extends Application implements IGUI {
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
+        scene.getRoot().requestFocus();
 
         primaryStage.setScene(scene);
         primaryStage.show();
