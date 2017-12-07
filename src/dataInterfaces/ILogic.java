@@ -69,4 +69,6 @@ public interface ILogic {
     public void lose();
 
     public void scoreBoard();
+    
+    public int getBeefcount();
 }

@@ -29,13 +29,13 @@ public class presentationFacade extends Application implements IGUI {
     }
 
     @Override
+
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScreen.fxml"));
 
         loader.setController(new StartScreenController(logic));
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
         primaryStage.setScene(scene);
@@ -52,3 +52,5 @@ public class presentationFacade extends Application implements IGUI {
         return logic;
     }
 }
+
+

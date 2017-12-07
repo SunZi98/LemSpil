@@ -89,6 +89,9 @@ public class LogicFacade implements dataInterfaces.ILogic {
         key.setPropDescription(". Looks like a key for the fish market");
 
         player1.addProp(beef);
+        player1.addProp(beef);
+        player1.addProp(beef);
+        player1.addProp(beef);
 //        player1.addProp(wallet);
 
     }
@@ -403,7 +406,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
                 if (bar.getRoomBehavior() == 1) {
                     setText("You cleaned the dishes and got 50 coins to your bag!");
                     player1.addCurrency(25);
-                    fruMadsensHouse.setRoomBehavior(0);
+                    bar.setRoomBehavior(0);
                     break;
                 } else {
                     setText("You already did the dishes!");
@@ -519,5 +522,11 @@ public class LogicFacade implements dataInterfaces.ILogic {
         }
 
     }
+
+    @Override
+    public int getBeefcount() {
+        return beefcount;
+    }
+    
 
 }
