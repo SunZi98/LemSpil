@@ -111,17 +111,21 @@ public class FXMLDocumentController implements Initializable {
     private void pickUp(ActionEvent event) {
         logic.pickUp();
 
-        if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
-            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
-            imagepic.setImage(img);
-        } else if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
-            img = new Image("file:src/presentation/Centrum (post pickUp).PNG");
-            imagepic.setImage(img);
+        if (logic.getCurrentPlayerRoom().getRoomName() == "centrum") {
+            if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
+                img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+                imagepic.setImage(img);
+            } else if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                img = new Image("file:src/presentation/Centrum (post pickUp).PNG");
+                imagepic.setImage(img);
+            }
         }
-        if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() && logic.getCurrentPlayerRoom().getRoomName() == "east") {
+         if (logic.getCurrentPlayerRoom().getRoomName() == "east") {
+        if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty()){
             img = new Image("file:src/presentation/East (post pickUp).png");
             imagepic.setImage(img);
         }
+         }
         if (logic.getCurrentPlayerRoom().getRoomName() == "bar") {
             if (logic.getCurrentPlayerRoom().getRoomBehavior() == 1 && logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
                 img = new Image("file:src/presentation/bar (pre pickUp & pre doDishes).png");
