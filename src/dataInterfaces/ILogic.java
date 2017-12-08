@@ -40,6 +40,10 @@ public interface ILogic {
 
     public void setText(String text);
 
+    public Boolean getIsBarEmpty();
+
+    public void setIsBarEmpty(Boolean isBarEmpty);
+
     public String getText();
 
     public void addText(String string);
@@ -56,6 +60,8 @@ public interface ILogic {
 
     public void showBag();
 
+    public int getCurrency();
+
     public void setIsSucessFull(Boolean isSucessFull);
 
     public Boolean getIsSucessFull();
@@ -69,6 +75,9 @@ public interface ILogic {
     public void lose();
 
     public void scoreBoard();
-    
+
     public int getBeefcount();
-}
+
+    public void setCurrentPlayerName(String PlayerName);
+
+    }

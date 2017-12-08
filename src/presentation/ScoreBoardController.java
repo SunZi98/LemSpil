@@ -1,26 +1,71 @@
 package presentation;
 
+import dataInterfaces.ILogic;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class ScoreBoardController implements Initializable {
 
-    
-    
-    @FXML 
+    private ILogic logic;
+
+    @FXML
     TextArea textArea;
-    
+    @FXML
+    private Button saveHighScoreButton;
+
+    @FXML
+    private Button newGameButton;
+
+    @FXML
+    private Button quitButton;
+
+    ScoreBoardController(ILogic logic) {
+        this.logic = logic;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       textArea.setText("Congratulations!!1");
-
-
-
+        textArea.setText("Congratulations!! " + logic.getPlayerName() + " WINS!!");
 
     }
 
-    
+    @FXML
+    void newGameButtonPressed(ActionEvent event) throws IOException {
+        playAgain();
+
+    }
+
+    @FXML
+    void quitButtonPressed(ActionEvent event) {
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
+
+    }
+
+    @FXML
+    void saveHighScoreButtonPressed(ActionEvent event) {
+
+    }
+    @FXML
+    public void playAgain() throws IOException{
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScreen.fxml"));
+
+            loader.setController(new StartScreenController(logic));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) newGameButton.getScene().getWindow();
+            stage.setScene(scene);
+    }
 }

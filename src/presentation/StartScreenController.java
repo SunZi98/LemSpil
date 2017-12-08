@@ -67,10 +67,15 @@ public class StartScreenController implements Initializable {
 
         loader.setController(new IntroController(logic));
         Parent root = loader.load();
+        
+        
 
         Scene scene = new Scene(root);
         Stage stage = (Stage) startButton.getScene().getWindow();
         stage.setScene(scene);
+        
+        String str = nameFieldID.getText();
+        logic.setCurrentPlayerName(str);
     }
 
     @FXML
@@ -86,5 +91,6 @@ public class StartScreenController implements Initializable {
     @FXML
     private void nameField(ActionEvent event) {
     }
+    
 }
 

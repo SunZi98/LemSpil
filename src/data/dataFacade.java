@@ -8,7 +8,7 @@ import dataInterfaces.ILogic;
 import java.io.Serializable;
 import java.util.Collection;
 
-public class dataFacade implements IData {
+public class dataFacade implements IData, Serializable {
     
     private static ILogic logic = LogicFacade.getInstance();
     private static IData data;
@@ -25,10 +25,8 @@ public class dataFacade implements IData {
 
     @Override
     public void save() {
-        saveData.player.getCurrentRoom();
-        saveData.player.getPlayerCurrency();
-        saveData.player.getName();
-        saveData.player.getStartTime();
+        saveData.logic.getCurrentPlayerRoom();
+        saveData.logic.getCurrency();
 //        saveData.npc.getCurrentRoom();
 //            saveData.room = bar;
 //            saveData.room = centrum;
@@ -52,10 +50,8 @@ public class dataFacade implements IData {
         try {
 //                Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
             SaveData loadData = (SaveData) ResourceManager.load("1.save");
-            player.setNewRoom(loadData.player.getCurrentRoom());
-            player.setPlayerCurrency(loadData.player.getPlayerCurrency());
-            player.setPlayerName(loadData.player.getName());
-            player.setStartTime(loadData.player.getStartTime());
+            player.setNewRoom(loadData.logic.getCurrentPlayerRoom());
+            player.setPlayerCurrency(loadData.logic.getCurrency());
 //            npc.setNewRoom(loadData.npc.getCurrentRoom());
 //                  Image img;
 //                  img = new Image("file:src/LemGame/FiskeMakret.png");

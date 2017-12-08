@@ -46,6 +46,8 @@ public class FXMLDocumentController implements Initializable {
     Image img;
     @FXML
     private AnchorPane root;
+    @FXML
+    private Button handInButton;
 
     public FXMLDocumentController(ILogic logic) {
         this.logic = logic;
@@ -75,7 +77,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void handIn(ActionEvent event) {
+    private void handIn(ActionEvent event) throws IOException {
         logic.handIn();
         textArea.setText(logic.getText());
         if (logic.getCurrentPlayerRoom().getRoomName() == "west") {
@@ -109,6 +111,13 @@ public class FXMLDocumentController implements Initializable {
     private void pickUp(ActionEvent event) {
         logic.pickUp();
 
+        if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
+            img = new Image("file:src/presentation/Centrum (pre pickUp).PNG");
+            imagepic.setImage(img);
+        } else if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+            img = new Image("file:src/presentation/Centrum (post pickUp).PNG");
+            imagepic.setImage(img);
+        }
         if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() && logic.getCurrentPlayerRoom().getRoomName() == "east") {
             img = new Image("file:src/presentation/East (post pickUp).png");
             imagepic.setImage(img);
@@ -128,11 +137,26 @@ public class FXMLDocumentController implements Initializable {
                 imagepic.setImage(img);
             }
         }
-        if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() && logic.getCurrentPlayerRoom().getRoomName() == "centrum") {
-            img = new Image("file:src/presentation/Centrum (post pickUp).PNG");
-            imagepic.setImage(img);
+        if (logic.getCurrentPlayerRoom().getRoomName() == "north") {
+            if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() && logic.getCurrentPlayerRoom().getRoomName() == "north") {
+                img = new Image("file:src/presentation/Centrum (post pickUp).PNG");
+                imagepic.setImage(img);
+            }
+            if (logic.getIsBarEmpty() == false && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                img = new Image("file:src/presentation/north (closed - post pickUp).png");
+                imagepic.setImage(img);
+            } else if (logic.getIsBarEmpty() == false && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                img = new Image("file:src/presentation/north (closed - pre pickUp).png");
+                imagepic.setImage(img);
+            } else if (logic.getIsBarEmpty() == true && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                img = new Image("file:src/presentation/north (open - post pickUp).png");
+                imagepic.setImage(img);
+            } else if (logic.getIsBarEmpty() == true && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                img = new Image("file:src/presentation/north (open - pre pickUp).png");
+                imagepic.setImage(img);
+            }
+            textArea.setText(logic.getText());
         }
-        textArea.setText(logic.getText());
     }
 
     @FXML
@@ -199,8 +223,20 @@ public class FXMLDocumentController implements Initializable {
                 if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                     logic.moveNorth();
                     textArea.setText(logic.getText());
-                    img = new Image("file:src/presentation/North (pre pickUp).png");
-                    imagepic.setImage(img);
+                    if (logic.getIsBarEmpty() == false && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (closed - post pickUp).png");
+                        imagepic.setImage(img);
+                    } else if (logic.getIsBarEmpty() == false && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (closed - pre pickUp).png");
+                        imagepic.setImage(img);
+                    } else if (logic.getIsBarEmpty() == true && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (open - post pickUp).png");
+                        imagepic.setImage(img);
+                    } else if (logic.getIsBarEmpty() == true && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (open - pre pickUp).png");
+                        imagepic.setImage(img);
+                    }
+
                     break;
 
                 } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("south")) {
@@ -231,8 +267,19 @@ public class FXMLDocumentController implements Initializable {
                 } else if (logic.getCurrentPlayerRoom().getRoomName() == "north") {
                     logic.moveFishMarket();
                     if (logic.getIsSucessFull() == false) {
-                        img = new Image("file:src/presentation/North (pre pickUp).png");
-                        imagepic.setImage(img);
+                        if (logic.getIsBarEmpty() == false && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                            img = new Image("file:src/presentation/north (closed - post pickUp).png");
+                            imagepic.setImage(img);
+                        } else if (logic.getIsBarEmpty() == false && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                            img = new Image("file:src/presentation/north (closed - pre pickUp).png");
+                            imagepic.setImage(img);
+                        } else if (logic.getIsBarEmpty() == true && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                            img = new Image("file:src/presentation/north (open - pre pickUp).png");
+                            imagepic.setImage(img);
+                        } else if (logic.getIsBarEmpty() == true && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                            img = new Image("file:src/presentation/north (open - post pickUp).png");
+                            imagepic.setImage(img);
+                        }
                         textArea.setText(logic.getText());
                         break;
                     } else {
@@ -321,8 +368,19 @@ public class FXMLDocumentController implements Initializable {
                 } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("the fish market")) {
                     logic.moveNorth();
                     textArea.setText(logic.getText());
-                    img = new Image("file:src/presentation/North (pre pickUp).png");
-                    imagepic.setImage(img);
+                    if (logic.getIsBarEmpty() == false && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (closed - pre pickUp).png");
+                        imagepic.setImage(img);
+                    } else if (logic.getIsBarEmpty() == false && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (closed - post pickUp).png");
+                        imagepic.setImage(img);
+                    } else if (logic.getIsBarEmpty() == true && logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (open - post pickUp).png");
+                        imagepic.setImage(img);
+                    } else if (logic.getIsBarEmpty() == true && !logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                        img = new Image("file:src/presentation/north (open - pre pickUp).png");
+                        imagepic.setImage(img);
+                    }
                     break;
 
                 } else if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("south")) {
@@ -378,21 +436,17 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    public void checkifWin() { //ændringer:
+    public void checkifWin() throws IOException {
         if (logic.getBeefcount() >= 4) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("scoreBoard.fxml"));
-                fxmlLoader.setController(new MapController(logic));
-                Parent root = (Parent) fxmlLoader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
-                } catch (IOException e) {
-                System.out.println("Cant load new window" + e);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("scoreBoard.fxml"));
 
-            }
+            loader.setController(new ScoreBoardController(logic));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) handInButton.getScene().getWindow();
+            stage.setScene(scene);
+
         }
     }
 }
-    
-

@@ -20,12 +20,14 @@ public class LogicFacade implements dataInterfaces.ILogic {
     private ArrayList<Prop> roomItems = new ArrayList();
     private static ILogic logic;
     private Boolean isSucessFull = false;
+    private Boolean isBarEmpty = false;
+
     int drunkPenalty;
     long endTimeInMinutes;
     long endTimeInSeconds;
     int beefcount = 0;
     int score;
-    
+
     private SaveData saveData = new SaveData();
     private Scanner input = new Scanner(System.in);
     private Room centrum = new Room("centrum");
@@ -79,7 +81,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
 
         centrum.addRoomItem(wallet);
         east.addRoomItem(ciggarets);
-        south.addRoomItem(timePotion);
+        north.addRoomItem(timePotion);
         bar.addRoomItem(key);
 
         wallet.setPropDescription(" you can either keep the wallet for 25 coins or find the owner for a potential greater reward");
@@ -161,6 +163,11 @@ public class LogicFacade implements dataInterfaces.ILogic {
     public void moveEast() {
         clearText();
         move(east);
+    }
+
+    @Override
+    public int getCurrency() {
+        return player1.getPlayerCurrency();
     }
 
     @Override
@@ -337,7 +344,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
     @Override
     public void map() {
         clearText();
-        setText("You are in " + player1.getCurrentRoom().toString());
+        setText((player1.getName())  + " You are in " + player1.getCurrentRoom().toString());
         addText("\nYou can go: ");
         for (Room StuffToPrint : player1.getCurrentRoom().getRoomExits()) {
             addText("\n" + StuffToPrint.getRoomName());
@@ -428,10 +435,14 @@ public class LogicFacade implements dataInterfaces.ILogic {
             if (player1.getBag().contains(timePotion)) {
                 consume();
             }
+            if(player1.getBag().contains(key)){
+                setIsBarEmpty(true);
+            }
             player1.getCurrentRoom().getRoomItem().clear();
         } catch (RuntimeException e) {
         }
     }
+
 
     @Override
     public void showBag() {
@@ -501,7 +512,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
         endTimeInSeconds = ((System.currentTimeMillis() + drunkPenalty * 1000 - player1.getStartTime()) / 1000) % 60;
         if (beefcount >= 4) {
             if (player1.getStartTime() + 1 * 60 * 1000 > System.currentTimeMillis() + drunkPenalty * 1000) {
-              setText("You got 10 points and used " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
+                setText("You got 10 points and used " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
                 score = 10;
             } else if (player1.getStartTime() + 2 * 60 * 1000 > System.currentTimeMillis() + drunkPenalty * 1000) {
                 setText("You got 8 points! " + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
@@ -527,6 +538,21 @@ public class LogicFacade implements dataInterfaces.ILogic {
     public int getBeefcount() {
         return beefcount;
     }
+
+    @Override
+    public Boolean getIsBarEmpty() {
+        return isBarEmpty;
+    }
     
+    @Override
+    public void setIsBarEmpty(Boolean isBarEmpty) {
+        this.isBarEmpty = isBarEmpty;
+    }
+    
+    @Override 
+    public void setCurrentPlayerName(String playerName){
+        player1.setPlayerName(playerName);
+        
+    }
 
 }
