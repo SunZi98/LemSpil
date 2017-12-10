@@ -32,10 +32,6 @@ public interface ILogic {
 
     public void moveBar();
 
-    public void save();
-
-    public void load();
-
     public void handIn();
 
     public void setText(String text);
@@ -79,5 +75,11 @@ public interface ILogic {
     public int getBeefcount();
 
     public void setCurrentPlayerName(String PlayerName);
+    
+    public long getElapsedTime();
+    
+    public long getStartTime();
+    
+    public long getPlayerDrunk();
 
-    }
+}

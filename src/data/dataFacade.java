@@ -6,13 +6,14 @@ import business.Player;
 import dataInterfaces.IData;
 import dataInterfaces.ILogic;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 
-public class dataFacade implements IData, Serializable {
-    
+public class dataFacade implements IData {
+
     private static ILogic logic = LogicFacade.getInstance();
     private static IData data;
-    SaveData saveData = new SaveData();
+    private ArrayList<Integer> scores;
 
     public static IData getInstance() {
         return data;
@@ -24,49 +25,33 @@ public class dataFacade implements IData, Serializable {
     }
 
     @Override
-    public void save() {
-        saveData.logic.getCurrentPlayerRoom();
-        saveData.logic.getCurrency();
-//        saveData.npc.getCurrentRoom();
-//            saveData.room = bar;
-//            saveData.room = centrum;
-//            saveData.room = east;
-//            saveData.room = fishMarket;
-//            saveData.room = fruMadsensHouse;
-//            saveData.room = north;
-//            saveData.room = south;
-//            saveData.room = taxi;
-//            saveData.room = west;
-        System.out.println("Saved");
-        try {
-            ResourceManager.save(saveData, "1.save");
-        } catch (Exception e) {
-            System.out.println("Couldn't save: " + e.getMessage());
-        }
+    public void saveHighScore() {
+        HighScore saver = new HighScore();
+        saver.save(100);
     }
 
     @Override
-    public void load(Player player, NPC npc) {
-        try {
-//                Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-            SaveData loadData = (SaveData) ResourceManager.load("1.save");
-            player.setNewRoom(loadData.logic.getCurrentPlayerRoom());
-            player.setPlayerCurrency(loadData.logic.getCurrency());
-//            npc.setNewRoom(loadData.npc.getCurrentRoom());
-//                  Image img;
-//                  img = new Image("file:src/LemGame/FiskeMakret.png");
-//                  imagePic.setImage(img);
-
-//                data.npc = tuborgMan;
-            System.out.println("Loaded");
-        } catch (Exception e) {
-            System.out.println("Couldn't load save data: " + e.getMessage());
-        }
+    public void loadHighScore() {
+        HighScore saver = new HighScore();
+        saver.load();
     }
 
-    
+    @Override
+    public int scoreCalc() {
+        return 100;
+    }
 
-   
+    @Override
+    public ArrayList<Integer> highScores(ArrayList<Integer> list) {
+        this.scores = new ArrayList();
+        return this.scores = list;
 
+    }
+
+    @Override
+    public ArrayList<Integer> getHighScores() {
+        return this.scores;
+
+    }
 
 }

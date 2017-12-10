@@ -40,7 +40,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
     private Room taxi = new Room("taxi");
     private Room fishMarket = new Room("the fish market");
     private Player player1 = new Player();
-    private NPC tuborgManden = new NPC("Tuborg Manden", bar);
+    private NPC tuborgManden = new NPC();
     private Room currentPlayerRoom;
     private String text;
 
@@ -53,7 +53,9 @@ public class LogicFacade implements dataInterfaces.ILogic {
     public LogicFacade() {
 
         player1.setStartTime(System.currentTimeMillis());
-        setCurrentPlayerRoom(centrum);
+        player1.setNewRoom(centrum);
+        tuborgManden.setName("tuborgManden");
+        tuborgManden.setNewRoom(bar);
 
         centrum.setRoomExit(north);
         centrum.setRoomExit(east);
@@ -90,10 +92,8 @@ public class LogicFacade implements dataInterfaces.ILogic {
         timePotion.setPropDescription(" Maybe i should try to drink it");
         key.setPropDescription(". Looks like a key for the fish market");
 
-        player1.addProp(beef);
-        player1.addProp(beef);
-        player1.addProp(beef);
-        player1.addProp(beef);
+        
+        
 //        player1.addProp(wallet);
 
     }
@@ -116,7 +116,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
     public void move(Room room) {
         checkTime();
         player1.setNewRoom(room);
-        tuborgManden.move();
+        tuborgManden.moveRandom();
         if (tuborgManden.getCurrentRoom() == taxi) {
             tuborgManden.setNewRoom(centrum);
         }
@@ -212,16 +212,6 @@ public class LogicFacade implements dataInterfaces.ILogic {
     @Override
     public void injectData(IData data) {
         this.data = data;
-    }
-
-    @Override
-    public void save() {
-        data.save();
-    }
-
-    @Override
-    public void load() {
-        data.load(player1, tuborgManden);
     }
 
     @Override
@@ -465,6 +455,7 @@ public class LogicFacade implements dataInterfaces.ILogic {
                 addText("\n" + print.get(propName) + " " + propName + "(s)");
             }
             addText("\nCurrency: " + Integer.toString(player1.getPlayerCurrency()));
+            addText("\n Drunk meter: " + player1.getPlayerDrunk());
         }
     }
 
@@ -551,8 +542,22 @@ public class LogicFacade implements dataInterfaces.ILogic {
     
     @Override 
     public void setCurrentPlayerName(String playerName){
-        player1.setPlayerName(playerName);
+        player1.setName(playerName);
         
     }
 
+    @Override
+    public long getElapsedTime(){
+        return player1.getStartTime() - player1.getEndTime();
+    }
+    
+    @Override
+    public long getStartTime(){
+        return player1.getStartTime();
+    }
+    
+     @Override
+    public long getPlayerDrunk(){
+        return player1.getPlayerDrunk();
+    }
 }

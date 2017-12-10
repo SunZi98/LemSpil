@@ -13,5 +13,6 @@ public class SaveData implements java.io.Serializable { //Needed to we can write
 //    Guis gui = new Guis();
     
      public ILogic logic = LogicFacade.getInstance();
+     Player player = new Player();
     
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextArea fx:id="textArea" prefHeight="400.0" prefWidth="600.0" />
+      <Button fx:id="playAgian" layoutX="89.0" layoutY="275.0" mnemonicParsing="false" text="Play agian!" />
+      <Button fx:id="quitButton" layoutX="410.0" layoutY="275.0" mnemonicParsing="false" onAction="#quitButtonPressed" text="Quit" />
+      <Button fx:id="saveHighScoreButton" layoutX="247.0" layoutY="275.0" mnemonicParsing="false" text="Save highscore!" />
+   </children>
+</AnchorPane>

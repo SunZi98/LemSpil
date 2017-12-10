@@ -21,5 +21,4 @@ public class Starter {
         ui.injectLogic(logic);
         ui.startApplication(args);   
     }
-   
 }

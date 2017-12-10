@@ -63,19 +63,6 @@ public class FXMLDocumentController implements Initializable {
         imagepic.setImage(img);
     }
 
-    //textField.setText(logic.textString);
-    @FXML
-    private void save(ActionEvent event) {
-        logic.save();
-        //textField.setText(logic.textString);
-    }
-
-    @FXML
-    private void load(ActionEvent event) {
-        logic.load();
-        //textField.setText(logic.textString);
-    }
-
     @FXML
     private void handIn(ActionEvent event) throws IOException {
         logic.handIn();
@@ -120,12 +107,12 @@ public class FXMLDocumentController implements Initializable {
                 imagepic.setImage(img);
             }
         }
-         if (logic.getCurrentPlayerRoom().getRoomName() == "east") {
-        if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty()){
-            img = new Image("file:src/presentation/East (post pickUp).png");
-            imagepic.setImage(img);
+        if (logic.getCurrentPlayerRoom().getRoomName() == "east") {
+            if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
+                img = new Image("file:src/presentation/East (post pickUp).png");
+                imagepic.setImage(img);
+            }
         }
-         }
         if (logic.getCurrentPlayerRoom().getRoomName() == "bar") {
             if (logic.getCurrentPlayerRoom().getRoomBehavior() == 1 && logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
                 img = new Image("file:src/presentation/bar (pre pickUp & pre doDishes).png");
@@ -165,13 +152,15 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void keyPressed(KeyEvent event) {
+        try{
         switch (event.getCode()) {
             case B:
+                checkifLose();
                 logic.showBag();
                 textArea.setText(logic.getText());
                 break;
             case D:
-
+                checkifLose();
                 if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                     logic.moveEast();
                     textArea.setText(logic.getText());
@@ -224,6 +213,7 @@ public class FXMLDocumentController implements Initializable {
                 }
                 break;
             case W:
+                checkifLose();
                 if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                     logic.moveNorth();
                     textArea.setText(logic.getText());
@@ -298,6 +288,7 @@ public class FXMLDocumentController implements Initializable {
                 }
 
             case A:
+                checkifLose();
                 if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                     logic.moveWest();
                     textArea.setText(logic.getText());
@@ -345,6 +336,7 @@ public class FXMLDocumentController implements Initializable {
                 }
 
             case S:
+                checkifLose();
                 if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                     logic.moveSouth();
                     textArea.setText(logic.getText());
@@ -399,16 +391,19 @@ public class FXMLDocumentController implements Initializable {
                 }
 
             case M:
+                checkifLose();
                 logic.map();
                 mapText.setText(logic.getText());
                 break;
 
             case T:
+                checkifLose();
                 logic.talk();
                 textArea.setText(logic.getText());
                 break;
 
             case E:
+                checkifLose();
                 logic.doAction();
                 if (logic.getCurrentPlayerRoom().getRoomName() == "bar") {
                     if (logic.getCurrentPlayerRoom().getRoomBehavior() == 1 && logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
@@ -437,6 +432,9 @@ public class FXMLDocumentController implements Initializable {
                 textArea.setText(logic.getText());
                 break;
         }
+        }catch (Exception e){
+                System.out.println("Error" + e);
+                }
     }
 
     @FXML
@@ -453,4 +451,21 @@ public class FXMLDocumentController implements Initializable {
 
         }
     }
+    
+     @FXML
+    public void checkifLose() throws IOException {
+        if (logic.getStartTime() + 5 * 60 * 1000 < System.currentTimeMillis() + logic.getPlayerDrunk() * 1000) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoseScreen.fxml"));
+
+            loader.setController(new ScoreBoardController(logic));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) handInButton.getScene().getWindow();
+            stage.setScene(scene);
+        }
+        
+        
+    }
+    
 }

@@ -4,36 +4,17 @@ import dataInterfaces.ILogic;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player implements Serializable {
+public class Player extends Character {
 
-  
     private long startTime;
     long endTime;
-    private Room currentPlayerRoom; //players current room
     private int playerDrunk; // indicates how "drunk" the player. It's indicated with a int datatype.
-    private String playerName; //player name
     private int playerCurrency; // player currency
-     private ArrayList<Prop> bag = new ArrayList();
+    private ArrayList<Prop> bag = new ArrayList();
 
     public Player() { //Constructor that sets a start value for playername, playerCurrency and playerDrunk
         this.playerCurrency = 0;
         this.playerDrunk = 0;
-    }
-
-    public String getName() {
-        return playerName;
-    }
-
-    public Room getCurrentRoom() {
-        return currentPlayerRoom;
-    }
-
-    public void setNewRoom(Room room) {
-        this.currentPlayerRoom = room;
-    }
-
-    public void move(Room room) { //move method that updates currentPlayerRoom
-        this.currentPlayerRoom = room;
     }
 
     public int getPlayerCurrency() { //return player currency
@@ -43,8 +24,6 @@ public class Player implements Serializable {
     public void addCurrency(int currency) { // add currency 
         playerCurrency += currency;
     }
-
-
 
     public int removeCurrency(int currency) { // remove currency
         return playerCurrency -= currency;
@@ -61,11 +40,6 @@ public class Player implements Serializable {
     public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
     public long getEndTime() {
         return endTime;
     }
@@ -93,10 +67,9 @@ public class Player implements Serializable {
     public void removeItem(Prop prop) { //remove item from bag
         bag.remove(prop);
     }
-    
-    public void addDrunk(){
+
+    public void addDrunk() {
         playerDrunk++;
     }
-    
-    
+
 }
