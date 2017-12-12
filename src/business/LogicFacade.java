@@ -422,7 +422,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
     @Override //Override method from ILogic interface.
     public void map() {
         clearText();
-        setText((player1.getName()) + " You are in " + player1.getCurrentRoom().toString());
+        setText((player1.getName()) + " You are in " + player1.getCurrentRoom().getRoomName());
         addText("\nYou can go: ");
         for (Room StuffToPrint : player1.getCurrentRoom().getRoomExits()) { //for each loop to print currentRoom's roomExits
             addText("\n" + StuffToPrint.getRoomName());
