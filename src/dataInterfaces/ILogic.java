@@ -5,12 +5,8 @@ import business.Room;
 import java.util.ArrayList;
 
 public interface ILogic {
-
+    
     public void injectData(IData data);
-
-    public void setCurrentPlayerRoom(Room room);
-
-    public String getPlayerName();
 
     public Room getCurrentPlayerRoom();
 
@@ -52,28 +48,19 @@ public interface ILogic {
 
     public void pickUp();
 
-    public String getRoomPropName();
-
     public void showBag();
 
-    public int getCurrency();
-
-    public void setIsSucessFull(Boolean isSucessFull);
-
     public Boolean getIsSucessFull();
-
     public void help();
 
     public void clearText();
-
-    public void checkTime();
-
-    public void lose();
+    
+    public int getBeefCount();
 
     public void scoreBoard();
 
-    public int getBeefcount();
-
+    public String getPlayerName();
+    
     public void setCurrentPlayerName(String PlayerName);
     
     public long getElapsedTime();
@@ -81,5 +68,5 @@ public interface ILogic {
     public long getStartTime();
     
     public long getPlayerDrunk();
-
+    
 }

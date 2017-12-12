@@ -5,11 +5,12 @@ import java.util.ArrayList;
 
 public class Room implements Serializable {
 
+   //Attributes that define a Room
     private String roomName;
     private int roomBehavior;
     private String roomDescription;
-    ArrayList<Prop> roomItems = new ArrayList(); // ArrayList that holds props in the room.
-    private ArrayList<Room> roomExits = new ArrayList(); // ArrayList that holds room exits.
+    ArrayList<Prop> roomItems = new ArrayList(); // ArrayList that holds Prop Objects.
+    private ArrayList<Room> roomExits = new ArrayList(); // ArrayList that holds Room objects.
 
     public Room() {
 

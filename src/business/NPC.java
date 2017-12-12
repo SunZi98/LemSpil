@@ -6,17 +6,18 @@ import java.util.Random;
 
 public class NPC extends Character {
 
-    private String npcDiscription;
+    //Attributes that define NPC
+    private String npcDescription; 
 
-    public NPC() {
+    public NPC() { //Empty constructor
 
     }
 
-    public void setNpcDiscription(String npcDiscription) {
-        this.npcDiscription = npcDiscription;
+    public void setNpcDiscription(String npcDiscription) { //method that give the npcDescription a new value
+        this.npcDescription = npcDiscription;
     }
 
-    public String getNpcDiscription() {
-        return npcDiscription;
+    public String getNpcDiscription() { //Returns npcDescription
+        return npcDescription;
     }
 }

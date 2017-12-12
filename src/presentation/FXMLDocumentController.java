@@ -439,7 +439,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     public void checkifWin() throws IOException {
-        if (logic.getBeefcount() >= 4) {
+        if (logic.getBeefCount()>= 4) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("scoreBoard.fxml"));
 
             loader.setController(new ScoreBoardController(logic));
