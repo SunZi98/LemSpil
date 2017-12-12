@@ -26,9 +26,12 @@ import javafx.stage.Stage;
  */
 public class IntroController implements Initializable {
     
-    private ILogic logic;
+    
+    private ILogic logic; //declare logic as ILogic type
+    
+      // instantiate variables from different FXML types.
     @FXML
-    private AnchorPane root;
+    private AnchorPane root; 
     @FXML
     private Button startGameButton;
 
@@ -44,6 +47,9 @@ public class IntroController implements Initializable {
         // TODO
     }    
 
+    /*
+    when method is called load FXMLDocument
+    */
     @FXML
     private void startGamePressed(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLDocument.fxml"));

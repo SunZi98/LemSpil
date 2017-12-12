@@ -5,21 +5,15 @@ import business.NPC;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public interface IData {
+public interface IData { //Interface
 
+    //Methods in this interface
     public void injectLogic(ILogic logic);
     
+    public void openFile();
     
+    public int addRecords();
     
-    
-    public void saveHighScore();
-
-    public void loadHighScore();
-
-    public int scoreCalc();
-
-    public ArrayList<Integer> highScores(ArrayList<Integer> list);
-
-    public ArrayList<Integer> getHighScores();
+    public void closeFile();
 
 }

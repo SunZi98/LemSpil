@@ -20,8 +20,9 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class LoseScreenController implements Initializable {
-    private ILogic logic;
+    private ILogic logic; //declare logic as ILogic type
     
+      // instantiate variables from different FXML types.
     @FXML
     TextArea textArea;
     
@@ -37,7 +38,7 @@ public class LoseScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        textArea.setText(logic.getPlayerName()+ "You lost. Your time was: " + logic.getElapsedTime());
+        textArea.setText(logic.getPlayerName()+ "You lost. Your time was: " + logic.getElapsedTime()); //set textArea
     }
     
     LoseScreenController(ILogic logic) {
@@ -47,12 +48,12 @@ public class LoseScreenController implements Initializable {
 
     @FXML
     void newGameButtonPressed(ActionEvent event) throws IOException {
-        playAgain();
+        playAgain(); //Call playAgian   
 
     }
 
     @FXML
-    void quitButtonPressed(ActionEvent event) {
+    void quitButtonPressed(ActionEvent event) { //Method that quits the program.
         Stage stage = (Stage) quitButton.getScene().getWindow();
         stage.close();
 
@@ -60,8 +61,12 @@ public class LoseScreenController implements Initializable {
 
     @FXML
     void saveHighScoreButtonPressed(ActionEvent event) {
-
     }
+    
+    
+    /*
+    When this method is called load StartScreen FXML
+    */
     @FXML
     public void playAgain() throws IOException{
         

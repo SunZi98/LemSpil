@@ -8,11 +8,8 @@ import business.Room;
 import dataInterfaces.ILogic;
 
 
-public class SaveData implements java.io.Serializable { //Needed to we can write to disk or outside
+public class SaveData implements java.io.Serializable { //Implements the Serializable interface
     private static final long serialVersionUID = 1L; //Parse 1 long to 1 LONG
-//    Guis gui = new Guis();
     
-     public ILogic logic = LogicFacade.getInstance();
-     Player player = new Player();
     
 }

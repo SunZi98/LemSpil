@@ -4,7 +4,9 @@ import business.Prop;
 import business.Room;
 import java.util.ArrayList;
 
-public interface ILogic {
+public interface ILogic { //Interface
+    
+    //Methods in this interface
     
     public void injectData(IData data);
 
@@ -68,5 +70,7 @@ public interface ILogic {
     public long getStartTime();
     
     public long getPlayerDrunk();
+    
+    public int getScore();
     
 }

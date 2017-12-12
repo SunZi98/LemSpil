@@ -16,8 +16,9 @@ import javafx.stage.Stage;
 
 public class ScoreBoardController implements Initializable {
 
-    private ILogic logic;
+    private ILogic logic;//declare logic as ILogic type
 
+     // instantiate variables from different FXML types.
     @FXML
     TextArea textArea;
     @FXML
@@ -29,19 +30,19 @@ public class ScoreBoardController implements Initializable {
     @FXML
     private Button quitButton;
 
-    ScoreBoardController(ILogic logic) {
+    ScoreBoardController(ILogic logic) { //Sets this.logic to logic entered in method parameter
         this.logic = logic;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        textArea.setText("Congratulations!! " + logic.getPlayerName() + " WINS!!");
+        textArea.setText("Congratulations!! " + logic.getPlayerName() + " WINS!!"); //set textArea
 
     }
 
     @FXML
     void newGameButtonPressed(ActionEvent event) throws IOException {
-        playAgain();
+        playAgain(); //Call playAgian 
 
     }
 
@@ -56,6 +57,10 @@ public class ScoreBoardController implements Initializable {
     void saveHighScoreButtonPressed(ActionEvent event) {
 
     }
+    
+    /*
+    When this method is called load StartScreen FXML
+    */
     @FXML
     public void playAgain() throws IOException{
         

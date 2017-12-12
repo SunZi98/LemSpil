@@ -476,7 +476,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
             }
             if (player1.getCurrentRoom() == bar) { //checks if player1's currentRoom is equal to bar object
                 if (bar.getRoomBehavior() == 1) {
-                    setText("You cleaned the dishes and got 50 coins to your bag!"); //setText method is called.
+                    setText("You cleaned the dishes and got 25 coins to your bag!"); //setText method is called.
                     player1.addCurrency(25);//Increment palyerCurrency by 25
                     bar.setRoomBehavior(0); //set bar objects roomBehavior to 0
                     break;
@@ -499,12 +499,11 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
         clearText();
         try {
             player1.addProp(player1.getCurrentRoom().getRoomItem().get(0)); //get currentRoom's ArrayList at index 0.
-            setText("You picked up a " + player1.getCurrentRoom().getRoomItems());
+            setText("You picked up a " + player1.getCurrentRoom().getRoomItemsIndexZero());
             if (player1.getBag().contains(timePotion)) { //If you pickup a timePotion
                 consume(); //call consume method
             }
             if (player1.getBag().contains(key)) { //if you pickup key 
-                player1.getBag().remove(key); //remove from bag 
                 setIsBarEmpty(true); //set variable value to true.
             }
             player1.getCurrentRoom().getRoomItem().clear(); //remove all items from player1's currentRoom.
@@ -582,7 +581,11 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
             setText("You got 0 points" + endTimeInMinutes + " minutes and " + endTimeInSeconds + " seconds");
             score = 0;
         }
-
+    }
+    
+    @Override
+    public int getScore(){
+        return score;
     }
 
 }

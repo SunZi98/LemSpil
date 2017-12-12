@@ -12,7 +12,7 @@ public class Room implements Serializable {
     ArrayList<Prop> roomItems = new ArrayList(); // ArrayList that holds Prop Objects.
     private ArrayList<Room> roomExits = new ArrayList(); // ArrayList that holds Room objects.
 
-    public Room() {
+    public Room() { //empty constructor
 
     }
 
@@ -21,52 +21,47 @@ public class Room implements Serializable {
         this.roomBehavior = 1; //set roomBehavior to 1.
     }
 
-    @Override
-    public String toString() {
-        return roomName;
-    }
-
-    public void addRoomItem(Prop prop) {
+    public void addRoomItem(Prop prop) { //Add a Prop to roomItems ArrayList
         roomItems.add(prop);
     }
 
-    public void removeRoomItem(Prop prop) {
+    public void removeRoomItem(Prop prop) { // Remove a Prop from roomItems ArrayList
         roomItems.remove(prop);
     }
 
-    public void setRoomExit(Room room) {
+    public void setRoomExit(Room room) { //Add a Room to roomExits ArrayList
         roomExits.add(room);
     }
 
-    public String getRoomName() {
+    public String getRoomName() { //Returns roomName variable value
         return roomName;
     }
 
-    public int getRoomBehavior() {
+    public int getRoomBehavior() { //Return roomBehavior variable value
         return roomBehavior;
     }
 
-    public void setRoomBehavior(int number) {
+    public void setRoomBehavior(int number) { //Sets a new roomBehavior value to the entered value in method parameters
         this.roomBehavior = number;
     }
 
-    public String getRoomDescription() {
+    public String getRoomDescription() { //returns roomDescription variable value
         return roomDescription;
     }
 
-    public void setRoomDescription(String roomDescription) {
+    public void setRoomDescription(String roomDescription) { //Sets a new roomDescription value  to the entered value in method parameters
         this.roomDescription = roomDescription;
     }
 
-    public ArrayList<Prop> getRoomItem() {
+    public ArrayList<Prop> getRoomItem() { //Returns the ArrayList roomItems
         return roomItems;
     }
 
-    public String getRoomItems() {
+    public String getRoomItemsIndexZero() { //Returns the Prop located at index 0 in roomItems ArrayList
         return roomItems.get(0).getPropName();
     }
 
-    public ArrayList<Room> getRoomExits() {
+    public ArrayList<Room> getRoomExits() { //Returns the ArrayList roomExits
         return roomExits;
     }
 

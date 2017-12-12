@@ -25,16 +25,18 @@ public class presentationFacade extends Application implements IGUI {
 
     @Override
     public void injectLogic(ILogic logic) {
-        presentationFacade.logic = logic;
+        presentationFacade.logic = logic; //Sets logic to logic entered in method parameters
     }
 
+    /*
+    When this method is called load StartScreen FXML
+    */
     @Override
-
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScreen.fxml"));
 
-        loader.setController(new StartScreenController(logic));
+        loader.setController(new StartScreenController(logic)); //set the new controller with a logic parameter
         Parent root = loader.load();
         Scene scene = new Scene(root);
         scene.getRoot().requestFocus();
@@ -45,10 +47,10 @@ public class presentationFacade extends Application implements IGUI {
     @Override
     public void startApplication(String[] args) {
         ui = this;
-        launch(args);
+        launch(args); // launch the command line arguments passed to the application
     }
 
-    public ILogic getLogic() {
+    public ILogic getLogic() { //Method that return logic variable value
         return logic;
     }
 }
