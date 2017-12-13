@@ -9,7 +9,7 @@ public class Room implements Serializable {
     private String roomName;
     private int roomBehavior;
     private String roomDescription;
-    ArrayList<Prop> roomItems = new ArrayList(); // ArrayList that holds Prop Objects.
+    private ArrayList<Prop> roomItems = new ArrayList(); // ArrayList that holds Prop Objects.
     private ArrayList<Room> roomExits = new ArrayList(); // ArrayList that holds Room objects.
 
     public Room() { //empty constructor

@@ -166,17 +166,16 @@ public class FXMLDocumentController implements Initializable {
             switch (event.getCode()) {
                 case B:
                     /*
-                    Calls showBag method defined in logicFacade, checksIfLose method, and set update textArea
+                    Calls showBag method defined in logicFacade, method, and set update textArea
                      */
-                    checkifLose();
                     logic.showBag();
                     textArea.setText(logic.getText());
                     break;
                 case D:
                     /*
-                    Calls move method defined in logicFacade, checksIfLose method and set img accordenly.
+                    Calls move method defined in logicFacade, method and set img accordenly.
                      */
-                    checkifLose();
+                    
                     if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                         logic.moveEast();
                         textArea.setText(logic.getText());
@@ -230,9 +229,8 @@ public class FXMLDocumentController implements Initializable {
                     break;
                 case W:
                     /*
-                    Calls move method defined in logicFacade, checksIfLose method and set img accordenly.
+                    Calls move method defined in logicFacade, method and set img accordenly.
                      */
-                    checkifLose();
                     if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                         logic.moveNorth();
                         textArea.setText(logic.getText());
@@ -308,9 +306,8 @@ public class FXMLDocumentController implements Initializable {
 
                 case A:
                     /*
-                    Calls move method defined in logicFacade, checksIfLose method and set img accordenly.
+                    Calls move method defined in logicFacade method and set img accordenly.
                      */
-                    checkifLose();
                     if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                         logic.moveWest();
                         textArea.setText(logic.getText());
@@ -359,9 +356,8 @@ public class FXMLDocumentController implements Initializable {
 
                 case S:
                     /*
-                    Calls move method defined in logicFacade, checksIfLose method and set img accordenly.
+                    Calls move method defined in logicFacade  method and set img accordenly.
                      */
-                    checkifLose();
                     if (logic.getCurrentPlayerRoom().getRoomName().equalsIgnoreCase("centrum")) {
                         logic.moveSouth();
                         textArea.setText(logic.getText());
@@ -419,25 +415,22 @@ public class FXMLDocumentController implements Initializable {
                     /*
                     Calls map method defined in logicFacade, checksIfLose method and set mapText accordenly.
                      */
-                    checkifLose();
                     logic.map();
                     mapText.setText(logic.getText());
                     break;
 
                 case T:
                     /*
-                    Calls talk method defined in logicFacade, checksIfLose method and set textArea accordenly.
+                    Calls talk method defined in logicFacade method and set textArea accordenly.
                      */
-                    checkifLose();
                     logic.talk();
                     textArea.setText(logic.getText());
                     break;
 
                 case E:
                     /*
-                    Calls do Action method defined in logicFacade, checksIfLose method and set img accordenly.
+                    Calls do Action method defined in logicFacadem ethod and set img accordenly.
                      */
-                    checkifLose();
                     logic.doAction();
                     if (logic.getCurrentPlayerRoom().getRoomName() == "bar") {
                         if (logic.getCurrentPlayerRoom().getRoomBehavior() == 1 && logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
@@ -491,19 +484,6 @@ public class FXMLDocumentController implements Initializable {
 /*
     if 5 minutes + playerDrunk * 1000 passes call LoseScreen FXML
     */
-    @FXML
-    public void checkifLose() throws IOException {
-        if (logic.getStartTime() + 5 * 60 * 1000 < System.currentTimeMillis() + logic.getPlayerDrunk() * 1000) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoseScreen.fxml"));
 
-            loader.setController(new ScoreBoardController(logic));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) handInButton.getScene().getWindow();
-            stage.setScene(scene);
-        }
-
-    }
 
 }

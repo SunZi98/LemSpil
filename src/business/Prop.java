@@ -25,8 +25,8 @@ public class Prop {
         return propDescription;
     }
 
-    public void setPropDescription(String popDesripction) { //set a new propDescritpion. 
-        this.propDescription = popDesripction;
+    public void setPropDescription(String propDesripction) { //set a new propDescritpion. 
+        this.propDescription = propDesripction;
     }
     
 }

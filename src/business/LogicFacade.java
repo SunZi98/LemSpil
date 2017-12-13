@@ -24,7 +24,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
     private String text;
 
     //Declare different variables of the Boolean type.
-    private Boolean isSucessFull;
+    private Boolean enterFishmarket;
     private Boolean isBarEmpty;
 
     //Declare different variables of the long type.
@@ -79,7 +79,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
         //Assign different variables a value.
         this.beefCount = 0;
         this.isBarEmpty = false;
-        this.isSucessFull = false;
+        this.enterFishmarket = false;
 
         player1.setStartTime(System.currentTimeMillis()); //Set the currentTime to the player1 object.
         player1.setNewRoom(centrum); //Update player1 currentRoom via setNewRoom method.
@@ -156,7 +156,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
     }
 
     private void setIsSucessFull(Boolean isSucessFull) { //Give setIsSuccessFull a value that is entered in method parameter
-        this.isSucessFull = isSucessFull;
+        this.enterFishmarket = isSucessFull;
     }
 
     @Override //Override method from ILogic interface.
@@ -175,7 +175,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
 
     @Override //Override method from ILogic interface.
     public Boolean getIsSucessFull() { //Method that returns isSucessFulls value.
-        return isSucessFull;
+        return enterFishmarket;
     }
 
     @Override
