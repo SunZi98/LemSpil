@@ -427,7 +427,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
         for (Room StuffToPrint : player1.getCurrentRoom().getRoomExits()) { //for each loop to print currentRoom's roomExits
             addText("\n" + StuffToPrint.getRoomName());
         }
-        addText("\nTuborg dude is in " + tuborgManden.getCurrentRoom());
+        addText("\nTuborg dude is in " + tuborgManden.getCurrentRoom().getRoomName());
     }
 
     @Override //Override method from ILogic interface.
