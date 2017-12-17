@@ -113,14 +113,16 @@ public class FXMLDocumentController implements Initializable {
                 img = new Image("file:src/presentation/Centrum (post pickUp).PNG");
                 imagepic.setImage(img);
             }
+            textArea.setText(logic.getText());
         }
-        if (logic.getCurrentPlayerRoom().getRoomName() == "east") {
+        else if (logic.getCurrentPlayerRoom().getRoomName() == "east") {
             if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty()) {
                 img = new Image("file:src/presentation/East (post pickUp).png");
                 imagepic.setImage(img);
             }
+            textArea.setText(logic.getText());
         }
-        if (logic.getCurrentPlayerRoom().getRoomName() == "bar") {
+        else if (logic.getCurrentPlayerRoom().getRoomName() == "bar") {
             if (logic.getCurrentPlayerRoom().getRoomBehavior() == 1 && logic.getCurrentPlayerRoom().getRoomItem().isEmpty() == false) {
                 img = new Image("file:src/presentation/bar (pre pickUp & pre doDishes).png");
                 imagepic.setImage(img);
@@ -134,8 +136,9 @@ public class FXMLDocumentController implements Initializable {
                 img = new Image("file:src/presentation/bar (post pickUp & post doDishes).png");
                 imagepic.setImage(img);
             }
+            textArea.setText(logic.getText());
         }
-        if (logic.getCurrentPlayerRoom().getRoomName() == "north") {
+        else if (logic.getCurrentPlayerRoom().getRoomName() == "north") {
             if (logic.getCurrentPlayerRoom().getRoomItem().isEmpty() && logic.getCurrentPlayerRoom().getRoomName() == "north") {
                 img = new Image("file:src/presentation/Centrum (post pickUp).PNG");
                 imagepic.setImage(img);
@@ -153,6 +156,8 @@ public class FXMLDocumentController implements Initializable {
                 img = new Image("file:src/presentation/north (open - pre pickUp).png");
                 imagepic.setImage(img);
             }
+            textArea.setText(logic.getText());
+        } else {
             textArea.setText(logic.getText());
         }
     }

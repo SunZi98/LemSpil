@@ -8,7 +8,7 @@ public class Prop {
     private String propDescription;
     private boolean consumable;
     
-    public Prop(String propName, int propValue){ //Contructor that gives the Prop a name
+    public Prop(String propName){ //Contructor that gives the Prop a name
         this.propName = propName;
         
     }

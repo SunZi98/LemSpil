@@ -54,6 +54,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
     private final Prop key;
     private final Prop ciggarets;
     private final Prop timePotion;
+    private final Prop stone;
 
     public LogicFacade() {
 
@@ -70,11 +71,12 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
         this.bar = new Room("bar");
         this.taxi = new Room("taxi");
         this.fishMarket = new Room("the fish market");
-        this.wallet = new Prop("Wallet", 25);
-        this.beef = new Prop("beef", 25);
-        this.key = new Prop("key", 0);
-        this.ciggarets = new Prop("ciggarets", 25);
-        this.timePotion = new Prop("time potion", 25);
+        this.wallet = new Prop("Wallet");
+        this.beef = new Prop("beef");
+        this.key = new Prop("key");
+        this.ciggarets = new Prop("ciggarets");
+        this.timePotion = new Prop("time potion");
+        this.stone = new Prop(" useless Rocks");
 
         //Assign different variables a value.
         this.beefCount = 0;
@@ -118,6 +120,8 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
         east.addRoomItem(ciggarets);
         north.addRoomItem(timePotion);
         bar.addRoomItem(key);
+        fruMadsensHouse.addRoomItem(stone);
+        south.addRoomItem(stone);
 
         //Set propDescription String via setPropDescription method.
         wallet.setPropDescription(" you can either keep the wallet for 25 coins or find the owner for a potential greater reward");
@@ -125,6 +129,7 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
         ciggarets.setPropDescription(" someone might be intrested in these");
         timePotion.setPropDescription(" Maybe i should try to drink it");
         key.setPropDescription(". Looks like a key for the fish market");
+        stone.setPropDescription(" useless rock");
 
     }
 
@@ -498,18 +503,23 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
     public void pickUp() {
         clearText();
         try {
-            player1.addProp(player1.getCurrentRoom().getRoomItem().get(0)); //get currentRoom's ArrayList at index 0.
-            setText("You picked up a " + player1.getCurrentRoom().getRoomItemsIndexZero());
-            if (player1.getBag().contains(timePotion)) { //If you pickup a timePotion
-                consume(); //call consume method
-            }
-            if (player1.getBag().contains(key)) { //if you pickup key 
-                setIsBarEmpty(true); //set variable value to true.
-            }
-            player1.getCurrentRoom().getRoomItem().clear(); //remove all items from player1's currentRoom.
+            if (player1.getBag().size() >= 4) {
+                setText("Your bag is full!");
+            } else {
+                player1.addProp(player1.getCurrentRoom().getRoomItem().get(0)); //get currentRoom's ArrayList at index 0.
+                setText("You picked up a " + player1.getCurrentRoom().getRoomItemsIndexZero());
+                if (player1.getBag().contains(timePotion)) { //If you pickup a timePotion
+                    consume(); //call consume method
+                }
+                if (player1.getBag().contains(key)) { //if you pickup key 
+                    setIsBarEmpty(true); //set variable value to true.
+                }
+                player1.getCurrentRoom().getRoomItem().clear(); //remove all items from player1's currentRoom.
 
-        } catch (RuntimeException e) { //catch RunTimeExeception
+            }
+        }catch (RuntimeException e) { //catch RunTimeExeception
         }
+
     }
 
     @Override //Override method from ILogic interface.
@@ -582,9 +592,9 @@ public class LogicFacade implements dataInterfaces.ILogic { //public class that 
             score = 0;
         }
     }
-    
+
     @Override
-    public int getScore(){
+    public int getScore() {
         return score;
     }
 
